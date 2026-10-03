@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>美東七六人追球之旅 2027.02.25–03.06</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Oswald:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2a5b;--ink:#142238;--red:#d62839;--paper:#eef2f8;--card:#fff;--mute:#5d6b82;--line:#d5dce8;
+--chi:#2f80c9;--cle:#7a2840;--phi:#0b2a5b;--was:#2f7d5b;
+--f:"Noto Sans TC","PingFang TC","Microsoft JhengHei",sans-serif;--n:"Oswald","Arial Narrow",sans-serif}
+*{box-sizing:border-box;margin:0}
+body{font-family:var(--f);background:var(--paper);color:var(--ink);line-height:1.65}
+.wrap{max-width:920px;margin:0 auto;padding:0 18px}
+header{background:var(--navy);color:#fff;padding:54px 0 40px;background-image:repeating-linear-gradient(90deg,rgba(255,255,255,.035) 0 38px,transparent 38px 76px)}
+header h1{font-size:clamp(30px,6vw,52px);font-weight:900;letter-spacing:.02em;line-height:1.2}
+header .sub{font-family:var(--n);font-size:20px;letter-spacing:.12em;opacity:.8;margin-top:10px}
+.route{display:flex;align-items:flex-start;margin-top:36px}
+.node{flex:0 0 auto;text-align:center;width:84px}
+.node i{display:block;width:16px;height:16px;border-radius:50%;margin:0 auto 8px;background:#fff;border:4px solid var(--c)}
+.node b{display:block;font-size:15px}.node span{font-family:var(--n);font-size:13px;opacity:.75}
+.seg{flex:1;height:2px;margin-top:7px;background:repeating-linear-gradient(90deg,#fff 0 6px,transparent 6px 12px);opacity:.55;position:relative}
+.seg em{position:absolute;top:-22px;left:50%;transform:translateX(-50%);font-size:11px;font-style:normal;white-space:nowrap;opacity:.9}
+.stats{display:flex;gap:28px;margin-top:34px;flex-wrap:wrap}
+.stats div{font-size:13px;opacity:.85}.stats strong{display:block;font-family:var(--n);font-size:34px;line-height:1;color:#fff}
+nav{position:sticky;top:0;z-index:9;background:rgba(238,242,248,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;gap:6px;overflow-x:auto;padding:10px 18px}
+nav a{flex:0 0 auto;text-decoration:none;color:var(--ink);font-size:13px;padding:5px 11px;border-radius:99px;border:1px solid var(--line);background:#fff;white-space:nowrap}
+nav a.g{border-color:var(--red);color:var(--red);font-weight:700}
+nav a:focus-visible,button:focus-visible{outline:3px solid var(--red);outline-offset:2px}
+h2{font-size:22px;margin:42px 0 14px;font-weight:900}
+.tickets{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:16px}
+.tk{position:relative;background:var(--card);border-radius:10px;display:flex;filter:drop-shadow(0 2px 3px rgba(11,42,91,.14))}
+.tk .l{background:var(--red);color:#fff;width:76px;border-radius:10px 0 0 10px;padding:14px 8px;text-align:center;border-right:2px dashed rgba(255,255,255,.7)}
+.tk .l b{display:block;font-family:var(--n);font-size:34px;line-height:1}.tk .l span{font-size:12px}
+.tk .r{padding:14px 16px;flex:1}
+.tk .r h3{font-size:17px;line-height:1.35}.tk .r p{font-size:13px;color:var(--mute)}
+.tk .r .tag{display:inline-block;font-size:11px;margin-top:6px;padding:1px 8px;border-radius:99px;background:var(--paper);color:var(--navy)}
+.tk::before,.tk::after{content:"";position:absolute;left:66px;width:20px;height:20px;border-radius:50%;background:var(--paper)}
+.tk::before{top:-10px}.tk::after{bottom:-10px}
+.flights{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.fl{background:var(--card);border-radius:10px;padding:16px 18px;border-top:4px solid var(--navy)}
+.fl h3{font-size:14px;color:var(--mute);font-weight:500}.fl p{font-family:var(--n);font-size:26px;letter-spacing:.04em}
+.fl small{display:block;font-size:12px;color:var(--mute);line-height:1.5;margin-top:2px}
+.day{background:var(--card);border-radius:12px;margin:18px 0;overflow:hidden;border-left:6px solid var(--c);scroll-margin-top:60px}
+.day.game{box-shadow:0 0 0 2px var(--red)}
+.dh{display:flex;gap:14px;align-items:center;padding:16px 20px;cursor:pointer;width:100%;border:0;background:none;text-align:left;font:inherit;color:inherit}
+.dn{font-family:var(--n);text-align:center;min-width:58px;line-height:1.05}
+.dn b{font-size:30px;display:block}.dn span{font-size:12px;color:var(--mute)}
+.dt{flex:1}.dt h3{font-size:18px;line-height:1.35}
+.chip{display:inline-block;font-size:12px;color:#fff;background:var(--c);padding:0 9px;border-radius:99px;margin-right:6px}
+.chip.r{background:var(--red)}
+.dt p{font-size:13px;color:var(--mute);margin-top:2px}
+.car{font-size:20px;transition:transform .2s;color:var(--mute)}
+.day.open .car{transform:rotate(90deg)}
+.db{display:none;padding:2px 20px 18px 92px}.day.open .db{display:block}
+.it{display:flex;gap:12px;padding:8px 0;border-top:1px solid var(--line)}
+.it:first-child{border-top:0}
+.it time{flex:0 0 54px;font-family:var(--n);color:var(--c);font-size:15px;padding-top:1px}
+.it h4{font-size:15px}.it p{font-size:13.5px;color:var(--mute)}
+.it.g h4{color:var(--red)}
+.meta{margin-top:10px;padding:10px 14px;background:var(--paper);border-radius:8px;font-size:13px;display:grid;gap:3px}
+.tools{display:flex;gap:8px;margin:0 0 4px}
+.tools button{font:inherit;font-size:13px;padding:5px 13px;border-radius:99px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+.stay{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+.sc{background:#fff;border-radius:10px;padding:14px 16px;border-top:4px solid var(--c)}
+.sc b{font-size:16px}.sc p{font-size:13px;color:var(--mute)}
+.box{background:#fff;border-radius:10px;padding:16px 20px;font-size:14px}
+.box li{margin:5px 0 5px 18px}
+.warn{border-left:5px solid var(--red)}
+footer{padding:36px 0 50px;font-size:12px;color:var(--mute)}
+@media(max-width:600px){.db{padding-left:20px}.flights{grid-template-columns:1fr}.node{width:64px}.node b{font-size:13px}.seg em{display:none}}
+@media print{nav,.tools{display:none}.db{display:block!important}header{background:var(--navy);-webkit-print-color-adjust:exact;print-color-adjust:exact}.day{break-inside:avoid}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+<header><div class="wrap">
+<div class="sub">PHILADELPHIA 76ERS ROAD TRIP · 2027</div>
+<h1>美東七六人追球之旅</h1>
+<div class="sub">2/25 THU – 3/6 SAT ｜ 10 DAYS</div>
+<div class="route">
+<div class="node" style="--c:var(--chi)"><i></i><b>芝加哥</b><span>2/25–2/27</span></div>
+<div class="seg"><em>開車約 6h（經阿克隆）</em></div>
+<div class="node" style="--c:var(--cle)"><i></i><b>克里夫蘭</b><span>2/27–3/2</span></div>
+<div class="seg"><em>開車約 6.5h</em></div>
+<div class="node" style="--c:var(--phi)"><i></i><b>費城</b><span>3/2–3/5</span></div>
+<div class="seg"><em>開車約 3h</em></div>
+<div class="node" style="--c:var(--was)"><i></i><b>華盛頓</b><span>3/5</span></div>
+</div>
+<div class="stats"><div><strong>3</strong>場七六人比賽</div><div><strong>4</strong>座城市</div><div><strong>8</strong>晚住宿</div></div>
+</div></header>
+<nav><div class="wrap" id="nav"></div></nav>
+<main class="wrap">
+<h2>三場比賽</h2>
+<div class="tickets">
+<div class="tk"><div class="l"><b>3/1</b><span>週一</span></div><div class="r"><h3>76ers @ 騎士</h3><p>7:00 PM ET｜Rocket Arena<br>克里夫蘭（客場）</p><span class="tag">全國轉播 NBCSN</span></div></div>
+<div class="tk"><div class="l"><b>3/3</b><span>週三</span></div><div class="r"><h3>黃蜂 @ 76ers</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class="tag">主場</span></div></div>
+<div class="tk"><div class="l"><b>3/4</b><span>週四</span></div><div class="r"><h3>湖人 @ 76ers</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class="tag">全國轉播 Prime Video</span></div></div>
+</div>
+
+<h2>機票</h2>
+<div class="flights">
+<div class="fl"><h3>去程｜長榮 BR056</h3><p>2/25 TPE → ORD</p><small>約 20:00 桃園起飛 → 約 19:30 抵達芝加哥歐海爾（同日）<br>時間來自長榮冬季班表，以你的電子機票為準</small></div>
+<div class="fl"><h3>回程｜長榮 BR03</h3><p>3/6 IAD → TPE</p><small>3/6（六）01:50 華盛頓杜勒斯起飛 → 3/7 05:45 抵達桃園<br>等於 3/5 晚上就要去機場，以電子機票為準</small></div>
+</div>
+
+<h2>每日行程</h2>
+<div class="tools"><button id="ex">全部展開</button><button id="co">全部收合</button></div>
+<div id="days"></div>
+
+<h2>住宿安排</h2>
+<div class="stay" id="stay"></div>
+
+<h2>城市間交通（全程開車）</h2>
+<div class="box"><ul>
+<li><b>2/27 芝加哥 → 阿克隆</b>：約 350 英里，開車約 5.5–6 小時，時區多 1 小時。阿克隆 → 克里夫蘭再約 45 分鐘。</li>
+<li><b>3/2 克里夫蘭 → 費城</b>：約 430 英里，開車約 6.5–7 小時，走賓州收費公路。</li>
+<li><b>3/5 費城 → 華盛頓</b>：約 140 英里，開車約 3 小時，I-95 容易塞。</li>
+<li>一次租車、異地還車：芝加哥取車，華盛頓還車。異地還車費可能很高，建議多家比價。</li>
+<li>2 月底東北部有暴風雪風險，出發前看天氣預報，行程有彈性。</li>
+<li>城內盡量不開車：芝加哥和費城用地鐵，克里夫蘭球賽日步行或叫車。飯店停車費每晚要先問。</li>
+<li>多數高速路段有電子收費，租車公司通常有計費方案，取車時問清楚。</li>
+</ul></div>
+
+<h2>出發前確認</h2>
+<div class="box warn"><ul>
+<li>開車需要有效駕照：台灣駕照加國際駕照最保險，出發前先辦。</li>
+<li>LeBron 博物館：週六 13:30 左右進場，先在網路上訂票，並確認當天營業時間。近期資料顯示只開週三到週六，所以放在 2/27。</li>
+<li>ESTA 在出發前 72 小時以前辦好。</li>
+<li>三場球票自己買：建議走 NBA 官方認可的票務平台（Ticketmaster、SeatGeek 等）。球場禁帶大背包，行李記得先放飯店。</li>
+<li>球賽時間以 NBA 官方公佈為準，之後仍可能調整；預訂不可退的機票與住宿前請再確認一次賽程。</li>
+<li>回程 BR03 是 3/6 凌晨 01:50，所以 3/5 當晚退房後不再住宿。你的機票若不是這班，請告訴我。</li>
+<li>長榮華盛頓航線每週只飛四班，改票空間比較小。</li>
+</ul></div>
+
+<h2>各城市氣候與穿著</h2>
+<div class="stay" id="wx"></div>
+<footer>賽程資料來源：NBA 官方與 ESPN 公佈之 2026-27 例行賽賽程。景點開放時間與票務請出發前再確認。</footer>
+</main>
+<script>
+const C={chi:"芝加哥",cle:"克里夫蘭",phi:"費城",was:"華盛頓"};
+const D=[
+{n:1,d:"2/25",w:"四",c:"chi",t:"台北出發，抵達芝加哥",m:"TPE → ORD",s:"芝加哥市區（Loop 或 River North）",i:[
+["晚","抵達歐海爾機場","入境後搭藍線地鐵進市區約 45 分鐘，或叫車。"],
+["晚","Check-in 與晚餐","先吃一份芝加哥熱狗，別加番茄醬。早點睡調時差。"]]},
+{n:2,d:"2/26",w:"五",c:"chi",t:"芝加哥一日精華",m:"步行＋地鐵",s:"芝加哥市區（Loop 或 River North）",i:[
+["09:00","芝加哥藝術博物館","印象派收藏很強，約 2.5 小時。"],
+["12:00","千禧公園・雲門","午餐後拍鏡面大豆，順著河畔步道走。"],
+["14:00","Magnificent Mile 與 Garrett 爆米花","起司加焦糖的混合口味值得排隊。"],
+["16:45","威利斯大樓 Skydeck","挑日落前後上去，提前訂票。"],
+["19:00","深盤披薩","Lou Malnati's 或 Giordano's，烤製約 45 分鐘，建議先預約。隔天要早起開車，今晚別太晚。"]]},
+{n:3,d:"2/27",w:"六",c:"cle",t:"芝加哥 → 阿克隆 LeBron 博物館 → 克里夫蘭",m:"開車約 6h＋45 分鐘（時區多 1 小時）",s:"克里夫蘭 Downtown",i:[
+["06:30","領車、出發","走 I-90 轉 Ohio Turnpike，沿路有收費。早上先加滿油。"],
+["中途","午前休息","印第安納與俄亥俄一路平坦，約每 2 小時停一次。"],
+["13:00","抵達阿克隆，在 House Three Thirty 午餐","館內有餐飲，LeBron 家鄉。"],
+["13:30","LeBron James' Home Court 博物館","重現童年公寓、高中球館與球鞋收藏，約 1–2 小時。週六營業到 17:00，先在網路上訂票。"],
+["15:45","I PROMISE School 外觀","就在附近，只能在外面看。"],
+["17:00","開車約 45 分鐘到克里夫蘭","入住市區飯店，停車費要先問。"],
+["19:00","晚餐","在 Playhouse Square 或 Ohio City 附近用餐。"]]},
+{n:4,d:"2/28",w:"日",c:"cle",t:"克里夫蘭市區",m:"步行／叫車",s:"克里夫蘭 Downtown",i:[
+["10:00","搖滾名人堂 Rock & Roll Hall of Fame","在伊利湖畔，約 2.5 小時。"],
+["13:30","午餐：Ohio City","Great Lakes Brewing 是在地經典。"],
+["15:00","克里夫蘭藝術博物館","免費，週日有開，隔天週一休館所以今天去。"],
+["17:30","Public Square 與 Terminal Tower","看看市區天際線，傍晚光線好。"],
+["19:00","晚餐與早睡","明天是賽日。"]]},
+{n:5,d:"3/1",w:"一",c:"cle",g:1,t:"克里夫蘭｜76ers @ 騎士",m:"步行",s:"克里夫蘭 Downtown",i:[
+["10:30","聖誕故事之家（可選）","電影《聖誕故事》拍攝地，在 Tremont，約 30 分鐘，先查營業時間。"],
+["12:30","午餐","可試 West Side Market 周邊，市場營業日要先查。"],
+["15:00","回飯店休息","整理球衣與外套。"],
+["17:30","到球場周邊覓食","Rocket Arena 賽前店家會擠，球場停車費不便宜，建議步行或叫車。"],
+["18:15","進場","開賽前 45 分鐘抵達，過安檢。"],
+["19:00","NBA：76ers @ 騎士 🏀","客場看七六人，穿藍紅色混在騎士球迷裡很有趣。"]]},
+{n:6,d:"3/2",w:"二",c:"phi",t:"克里夫蘭 → 費城",m:"開車約 6.5–7h",s:"費城 Center City",i:[
+["08:30","退房出發","走 I-76 轉 Pennsylvania Turnpike，全程收費。"],
+["中途","午餐與加油","在 Turnpike 休息站，冬天山區常有雪，出發前看路況。"],
+["15:30","抵達費城、入住","車停飯店，接下來幾天盡量搭地鐵。"],
+["16:45","雷丁車站市場 Reading Terminal Market","老字號室內市場，攤位多半傍晚就收，建議先吃晚餐。"],
+["18:30","City Hall 與 LOVE 公園","市政廳是全美最大的市政建築之一。"]]},
+{n:7,d:"3/3",w:"三",c:"phi",g:1,t:"費城｜黃蜂 @ 76ers",m:"步行＋地鐵 BSL",s:"費城 Center City",i:[
+["09:30","獨立廳與自由鐘","冬季獨立廳要事先訂時段票，自由鐘免票。"],
+["12:00","Elfreth's Alley","全美最古老的住宅街，十分鐘就能逛完。"],
+["13:00","費城藝術博物館・洛基階梯","重現跑上階梯拍照。"],
+["16:30","吃起司牛肉堡","Pat's 與 Geno's 對面開，可兩間都試。"],
+["17:30","搭地鐵前往球場","Broad Street Line 到 NRG 站，球場在南費城運動園區。"],
+["19:00","NBA：黃蜂 @ 76ers 🏀","Xfinity Mobile Arena，旁邊就是 MLB 費城人球場。"]]},
+{n:8,d:"3/4",w:"四",c:"phi",g:1,t:"費城｜湖人 @ 76ers",m:"步行＋地鐵 BSL",s:"費城 Center City",i:[
+["10:00","東州教養所 Eastern State Penitentiary","全美最著名的古蹟監獄，艾爾・卡彭待過，約 2 小時。"],
+["13:30","Magic Gardens","南街上的馬賽克藝術空間，小而美。"],
+["15:30","自由時間","可去 Citizens Bank Park 外觀與球隊商店，或在 Center City 逛街。"],
+["17:30","出發前往球場","賽前先在附近吃晚餐。"],
+["19:00","NBA：湖人 @ 76ers 🏀","最後一場，Prime Video 全國轉播，氣氛應該會滿。"]]},
+{n:9,d:"3/5",w:"五",c:"was",t:"費城 → 華盛頓，夜間前往機場",m:"開車約 3h，晚上 Metro 約 1h → IAD",s:"不住宿，搭 3/6 凌晨班機",i:[
+["09:30","退房，開車往華盛頓","走 I-95，經過巴爾的摩常塞車，預留彈性。"],
+["12:30","還車","市區或 DCA 還車點，DCA 有 Metro 直達市區。先確認異地還車費。行李寄放的地方事先查好。"],
+["13:30","國家廣場 National Mall","國會山莊、華盛頓紀念碑、林肯紀念堂一路走，約 3 小時。"],
+["16:30","史密森尼博物館","航空太空或自然史擇一，多數免費，部分要預約時段。"],
+["18:30","白宮外觀與晚餐","晚上林肯紀念堂有打燈。"],
+["21:30","取行李，前往杜勒斯機場 IAD","Metro 銀線約 1 小時，深夜班次要先查末班車，不然叫車。"],
+["23:00","機場報到","BR03 在 3/6 01:50 起飛，國際線至少提前 3 小時。"]]},
+{n:10,d:"3/6",w:"六",c:"was",t:"BR03 返台",m:"IAD → TPE，跨日線",s:"機上",i:[
+["01:50","長榮 BR03 起飛","直飛約 15 小時，在機上補眠。"],
+["3/7 05:45","抵達桃園","回家。"]]}
+];
+const nav=document.getElementById("nav"),box=document.getElementById("days");
+D.forEach(x=>{
+nav.insertAdjacentHTML("beforeend",`<a href="#d${x.n}" class="${x.g?'g':''}">${x.d} ${C[x.c]}</a>`);
+box.insertAdjacentHTML("beforeend",`<section class="day ${x.g?'game':''}" id="d${x.n}" style="--c:var(--${x.c})">
+<button class="dh" aria-expanded="false"><div class="dn"><b>${x.d}</b><span>週${x.w}</span></div>
+<div class="dt"><h3><span class="chip">${C[x.c]}</span>${x.g?'<span class="chip r">賽日</span>':''}${x.t}</h3><p>${x.m}</p></div><span class="car">›</span></button>
+<div class="db">${x.i.map(i=>`<div class="it ${i[1].includes('NBA')?'g':''}"><time>${i[0]}</time><div><h4>${i[1]}</h4><p>${i[2]}</p></div></div>`).join("")}
+<div class="meta"><span>住宿：${x.s}</span></div></div></section>`);
+});
+box.addEventListener("click",e=>{const b=e.target.closest(".dh");if(!b)return;const s=b.parentElement;s.classList.toggle("open");b.setAttribute("aria-expanded",s.classList.contains("open"))});
+const all=o=>document.querySelectorAll(".day").forEach(s=>{s.classList.toggle("open",o);s.querySelector(".dh").setAttribute("aria-expanded",o)});
+ex.onclick=()=>all(true);co.onclick=()=>all(false);
+if(location.hash){const t=document.querySelector(location.hash);t&&t.classList.add("open")}else{document.getElementById("d1").classList.add("open")}
+nav.addEventListener("click",e=>{const a=e.target.closest("a");if(a){const t=document.querySelector(a.getAttribute("href"));t&&t.classList.add("open")}});
+document.getElementById("stay").innerHTML=[["chi","芝加哥","2/25–2/27｜2 晚","選 Loop 或 River North，靠近藍線與紅線地鐵，這兩晚不用租車。"],["cle","克里夫蘭","2/27–3/2｜3 晚","住 Downtown，離 Rocket Arena 步行可達，問清停車費。"],["phi","費城","3/2–3/5｜3 晚","住 Center City，搭 Broad Street Line 去球場最方便。"],["was","華盛頓","3/5｜不住宿","白天寄放行李逛景點，晚上直接去機場。要休息可訂短時段房。"]].map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p><p>${a[3]}</p></div>`).join("");
+document.getElementById("wx").innerHTML=[["chi","芝加哥","約 -6 ~ 2°C，風大且濕冷。"],["cle","克里夫蘭","約 -4 ~ 3°C，湖邊常下雪。"],["phi","費城","約 -2 ~ 8°C，早晚偏冷。"],["was","華盛頓","約 0 ~ 10°C，白天較溫和。"]].map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p></div>`).join("")+`<div class="sc" style="--c:var(--red)"><b>穿著建議</b><p>羽絨外套、保暖內層、手套與防滑鞋。</p></div>`;
+</script>
+</body>
+</html>
