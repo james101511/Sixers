@@ -44,13 +44,6 @@ header{padding:34px 0 18px;background:var(--bg);color:var(--ink)}
 header .sub{font-size:12px;letter-spacing:.14em;color:var(--mute);font-weight:500}
 header h1{font-size:clamp(26px,5.2vw,38px);font-weight:700;letter-spacing:-.01em;line-height:1.2;margin:6px 0 4px}
 header .sub+h1+.sub{font-size:14px;letter-spacing:.04em;color:var(--mute)}
-.route{display:flex;align-items:flex-start;margin-top:22px}
-.node{flex:0 0 auto;text-align:center;min-width:64px}
-.node i{display:block;width:10px;height:10px;border-radius:50%;margin:0 auto 7px;background:var(--c);box-shadow:0 0 0 3px var(--bg),0 0 0 4px var(--line)}
-.node b{display:block;font-size:13px;font-weight:600}
-.node span{font-size:11px;color:var(--mute)}
-.seg{flex:1;height:1px;margin-top:5px;background:var(--line);position:relative;min-width:20px}
-.seg em{position:absolute;top:-19px;left:50%;transform:translateX(-50%);font-size:10.5px;font-style:normal;white-space:nowrap;color:var(--mute)}
 .stats{display:flex;gap:18px;margin-top:20px;flex-wrap:wrap;font-size:13px;color:var(--mute)}
 .stats div{display:flex;align-items:baseline;gap:4px}
 .stats strong{font-size:20px;font-weight:700;color:var(--ink)}
@@ -98,7 +91,7 @@ svg.tm .sea{fill:var(--sea)}svg.tm .land{fill:var(--land)}svg.tm .bord{fill:none
 svg.tm .lbl{fill:var(--ink);paint-order:stroke;stroke:var(--land);stroke-width:3}
 svg.tm .sub{fill:var(--mute);paint-order:stroke;stroke:var(--land);stroke-width:3}
 svg.tm .dot{fill:var(--card)}svg.tm .water{fill:var(--mute);opacity:.7}
-svg.tm .insbg{fill:var(--card);stroke:var(--bord)}svg.tm .insland{fill:var(--land);stroke:none}
+svg.tm .insbg{fill:var(--card);stroke:var(--bord)}svg.tm .insland{fill:var(--bord);stroke:none;opacity:.75}
 .mleg{display:flex;gap:6px 18px;flex-wrap:wrap;font-size:12px;color:var(--mute);margin:10px 4px 4px}
 .mleg i{display:inline-block;width:22px;height:0;border-top:2px solid;vertical-align:middle;margin-right:6px}
 .mleg i.f{border-top-style:dashed}
@@ -180,7 +173,6 @@ footer{padding:36px 0 20px;font-size:12px;color:var(--mute)}
 ::view-transition-old(root),::view-transition-new(root){animation-duration:.2s}
 @media(max-width:600px){
  .wrap{padding:0 16px}
- .node{min-width:54px}.seg em{display:none}
  .cd{min-height:78px;font-size:10px;padding:5px 4px}.cd .city{font-size:10.5px}.cd .dd{font-size:13px}
  .calwrap{padding:10px 6px}
  .tk{gap:12px;padding:14px 14px}
@@ -196,8 +188,6 @@ body{background:radial-gradient(900px 420px at 85% -80px,color-mix(in srgb,var(-
 header{background:transparent;padding-top:38px}
 header h1{font-size:clamp(30px,6.2vw,46px);font-weight:800;letter-spacing:-.025em}
 .ppill{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--pk);background:color-mix(in srgb,var(--pk) 13%,var(--card));padding:4px 13px;border-radius:99px}
-.node i{width:12px;height:12px;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
-.seg{background:linear-gradient(90deg,var(--line),color-mix(in srgb,var(--pk) 35%,var(--line)),var(--line))}
 .stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
 .stats div{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px 11px;box-shadow:var(--sh);font-size:12px;color:var(--mute)}
 .stats strong{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
@@ -252,24 +242,57 @@ h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:34px 0 14px}
 @media(prefers-reduced-motion:reduce){.panel.on>*,.panel.on .tk,.panel.on .fl{animation:none!important}}
 @media(max-width:600px){.tk .l{flex-basis:58px;width:58px;height:58px}.tk .l b{font-size:17px;line-height:39px}.stats strong{font-size:26px}.fl p{font-size:24px}}
 header .pdesc{margin-top:10px;max-width:62ch;font-size:13.5px}.phint{color:var(--mute);opacity:.8}
-.top .wrap{display:flex;align-items:center;gap:10px}
-.seg3{flex:1;min-width:0}
-.themebtn{flex:0 0 auto;width:44px;height:44px;border-radius:14px;border:0;background:color-mix(in srgb,var(--mute) 14%,transparent);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:transform .2s var(--spring),background .2s}
-.themebtn:active{transform:scale(.92)}
-.themebtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--spring)}
-.themebtn:hover svg{transform:rotate(18deg)}
 html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease,stroke .35s ease!important}
+.journey{display:flex;align-items:stretch;margin-top:22px;overflow-x:auto;scrollbar-width:none;padding:4px 2px 10px}
+.journey::-webkit-scrollbar{display:none}
+.stop{flex:0 0 auto;min-width:74px;text-align:center;background:var(--card);border:1px solid var(--line);border-radius:16px;padding:12px 12px 10px;box-shadow:var(--sh)}
+.stop::before{content:"";display:block;width:10px;height:10px;border-radius:50%;background:var(--c);margin:0 auto 7px;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.stop b{display:block;font-size:14px;font-weight:700;letter-spacing:-.01em;white-space:nowrap}
+.stop span{display:block;font-size:11px;color:var(--mute);margin-top:1px;white-space:nowrap}
+.hop{flex:1 1 46px;position:relative;min-width:46px;color:var(--lc)}
+.hop::before{content:"";position:absolute;left:-1px;right:-1px;top:calc(50% - 9px);border-top:2px dashed currentColor;opacity:.55}
+.hop.train::before,.hop.car::before{border-top-style:solid}
+.hop.fly{--lc:var(--fly)}.hop.train{--lc:var(--train)}.hop.car{--lc:var(--car)}
+.hop .ic{position:absolute;left:50%;top:calc(50% - 22px);transform:translateX(-50%);width:26px;height:26px;border-radius:50%;background:var(--card);border:1px solid var(--line);display:grid;place-items:center;box-shadow:0 1px 3px rgba(20,24,40,.12)}
+.hop .ic svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.hop.fly .ic svg{fill:currentColor;stroke:none}
+.hop small{position:absolute;left:50%;top:calc(50% + 11px);transform:translateX(-50%);font-size:10.5px;color:var(--mute);white-space:nowrap}
+.phint{display:block;margin-top:2px}
+@media(max-width:600px){.stop{min-width:0;padding:10px 6px 8px;border-radius:14px}.stop b{font-size:12.5px}.stop span{font-size:10px}.hop{flex:1 1 24px;min-width:24px}.hop .ic{width:22px;height:22px;top:calc(50% - 20px)}.hop .ic svg{width:13px;height:13px}.hop small{font-size:9.5px}}
+.bar{display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--mute) 14%,transparent);border-radius:18px;padding:4px}
+.bar .seg3{flex:1;min-width:0;background:none;padding:0;border-radius:0}
+.vr{flex:0 0 1px;height:26px;background:color-mix(in srgb,var(--mute) 35%,transparent);border-radius:1px}
+.themesw{position:relative;flex:0 0 auto;width:62px;height:34px;margin:0 4px 0 2px;border-radius:99px;border:0;padding:0;cursor:pointer;background:color-mix(in srgb,var(--mute) 24%,transparent);transition:background .3s}
+.themesw svg{stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.themesw .ts,.themesw .tm2{position:absolute;top:9px;width:16px;height:16px;color:var(--mute);opacity:.85}
+.themesw .ts{left:9px}.themesw .tm2{right:9px}
+.themesw .thumb{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .38s var(--spring)}
+.themesw .thumb svg{position:absolute;inset:6px;width:16px;height:16px;color:var(--pk);transition:opacity .25s,transform .38s var(--spring)}
+.themesw .t-moon{opacity:0;transform:rotate(-40deg) scale(.6)}
+html[data-eff="dark"] .themesw .thumb{transform:translateX(28px)}
+html[data-eff="dark"] .themesw .t-sun{opacity:0;transform:rotate(60deg) scale(.6)}
+html[data-eff="dark"] .themesw .t-moon{opacity:1;transform:none}
+.themesw:active .thumb{width:32px}
+html[data-eff="dark"] .themesw:active .thumb{transform:translateX(24px)}
+.stats{grid-template-columns:repeat(4,1fr)}
+.stop .nt{display:inline-block;margin-top:5px;font-size:10.5px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);padding:1px 8px;border-radius:99px}
+@media(max-width:600px){
+ .stats{grid-template-columns:repeat(2,1fr)}
+ .themesw{width:56px;height:32px}.themesw .thumb{width:26px;height:26px}.themesw .ts,.themesw .tm2{top:8px;width:15px;height:15px}.themesw .ts{left:8px}.themesw .tm2{right:8px}.themesw .thumb svg{inset:5px}
+ html[data-eff="dark"] .themesw .thumb{transform:translateX(24px)}
+ .seg3 button{padding:7px 2px 8px}.seg3 button small{font-size:10.5px}
+}
 </style>
 </head>
 <body>
-<div class="top" id="top"><div class="wrap"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><button class="themebtn" id="themebtn" type="button"></button></div></div>
+<div class="top" id="top"><div class="wrap"><div class="bar"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><span class="vr" aria-hidden="true"></span><button class="themesw" id="themebtn" type="button" role="switch" aria-checked="false" aria-label="深色模式"><svg class="ts" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="tm2" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span class="thumb"><svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="t-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg></span></button></div></div></div>
 <header><div class="wrap">
 <div class="sub">NBA ROAD TRIP · 2027</div>
 <h1>美東七六人追球之旅</h1>
 <div class="sub">2/25 THU – 3/8 MON ｜ 12 DAYS</div>
 <div class="ppill" id="ppill"></div>
 <div class="pdesc" id="pdesc"></div>
-<div class="route" id="route"></div>
+<div class="journey" id="route"></div>
 <div class="stats" id="stats"></div>
 </div></header>
 <main class="wrap" id="view">
@@ -310,7 +333,7 @@ html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-c
 <footer>賽程資料來源：NBA 官方與 ESPN 公佈之 2026-27 例行賽賽程。景點開放時間與票務請出發前再確認。</footer>
 </main>
 <nav class="tabs" id="tabs" aria-label="內容分頁"><div class="wrap"></div></nav>
-<script src="trip-map.js?v=3"></script>
+<script src="trip-map.js?v=5"></script>
 <script>
 const PLANS={
 a:{title:"美東七六人追球之旅 Plan A 紐約版 2027.02.25–03.08",route:"<div class=\"node\" style=\"--c:var(--chi)\"><i></i><b>芝加哥</b><span>2/25–2/27</span></div>\n<div class=\"seg\"><em>飛機約 2h20</em></div>\n<div class=\"node\" style=\"--c:var(--nyc)\"><i></i><b>紐約</b><span>2/27–3/2</span></div>\n<div class=\"seg\"><em>Amtrak 約 1.5–2h</em></div>\n<div class=\"node\" style=\"--c:var(--phi)\"><i></i><b>費城</b><span>3/2–3/5</span></div>\n<div class=\"seg\"><em>Amtrak 約 2–3h</em></div>\n<div class=\"node\" style=\"--c:var(--was)\"><i></i><b>華盛頓</b><span>3/5–3/6</span></div>\n",stats:"<div><strong>4</strong>場 NBA 比賽</div><div><strong>4</strong>座城市</div><div><strong>9</strong>晚住宿</div>",thead:"四場比賽",tickets:"<div class=\"tk\"><div class=\"l\"><b>2/27</b><span>週六</span></div><div class=\"r\"><h3>七六人 @ 尼克</h3><p>8:30 PM ET｜Madison Square Garden<br>紐約（客場看七六人）</p><span class=\"tag\">客場</span> <span class=\"price\">最低約 US$407 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-new-york-knicks-vs-philadelphia-76ers-tickets-madison-square-garden-2-27-27-8pm/8205165/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>2/28</b><span>週日</span></div><div class=\"r\"><h3>公鹿 @ 尼克</h3><p>7:30 PM ET｜Madison Square Garden<br>紐約（尼克主場）</p><span class=\"tag\">尼克主場</span> <span class=\"price\">最低約 US$214 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-new-york-knicks-vs-milwaukee-bucks-tickets-madison-square-garden-2-28-27-7pm/8205168/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/3</b><span>週三</span></div><div class=\"r\"><h3>黃蜂 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">主場</span> <span class=\"price\">最低約 US$76 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-charlotte-hornets-tickets-xfinity-mobile-arena-3-3-27-7pm/8205371/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/4</b><span>週四</span></div><div class=\"r\"><h3>湖人 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">全國轉播 Prime Video</span> <span class=\"price\">最低約 US$159 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-los-angeles-lakers-tickets-xfinity-mobile-arena-3-4-27-7pm/8205380/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n",flights:"<div class=\"fl\"><h3>去程｜長榮 BR056</h3><p>2/25 TPE → ORD</p><small>20:00 桃園起飛 → 約 18:35 抵達芝加哥歐海爾（同日）<br>時間以電子機票為準</small></div>\n<div class=\"fl\"><h3>國內段｜芝加哥 → 紐約（尚未訂）</h3><p>2/27 ORD → LGA</p><small>例：American 10:10 → 13:31、United 11:00 → 14:18，直飛約 2 小時 20 分，單程約 NT$4,882（Google Flights 2026/10/3 查詢，標示偏高）<br>也有飛 EWR、JFK 的班次；時間為當地時間</small></div>\n<div class=\"fl\"><h3>回程｜長榮 BR03</h3><p>3/6 IAD → TPE</p><small>3/6（六）23:55 華盛頓杜勒斯起飛 → 3/8（一）06:05 抵達桃園第二航廈</small></div>\n",transport:"<h2>城市間交通（全程不租車）</h2>\n<div class=\"box\"><ul>\n<li><b>2/27 芝加哥 → 紐約</b>：搭飛機，ORD → LGA 直飛約 2 小時 20 分，時差 +1 小時。LGA 到 LIC 可搭免費 Q70 公車到 Jackson Heights，再換 7 號線到 LIC；有行李或想省時間就叫車。</li>\n<li><b>3/2 紐約 → 費城</b>：搭 Amtrak，Penn Station 到 30th Street 站，約 1.5–2 小時。票價我沒查，越早買越便宜，出發前再看。</li>\n<li><b>3/5 費城 → 華盛頓</b>：搭 Amtrak，30th Street 站到 Union Station，Regional 約 2.5–3 小時、Acela 約 2 小時，票價約 US$30–80（依日期浮動）。</li>\n<li>全程不租車，避開冬季開車的風險。紐約、費城、華盛頓都用地鐵與叫車，不用停車費。</li>\n<li>2 月底東北部有暴風雪風險，航班與火車都可能延誤，出發前看天氣預報，行程保留彈性。</li>\n</ul></div>\n\n<h2>出發前確認</h2>\n<div class=\"box warn\"><ul>\n<li>ESTA 在出發前 72 小時以前辦好。</li>\n<li>四場球票自己買：建議走 NBA 官方認可的票務平台（TickPick、Ticketmaster、SeatGeek 等）。球場禁帶大背包，行李記得先放飯店。</li>\n<li>2/27、2/28 兩場都在 Madison Square Garden，就在 Penn Station 上方，賽日人潮多，提早進場。開賽時間依 TickPick 列表為 2/27 約 8:30 PM、2/28 約 7:30 PM，請再用 NBA 官方賽程確認。</li>\n<li>3/2 搭上午的 Amtrak 去費城，建議提早訂票，下午就能開始逛，3/3 晚上 7:00 才有比賽，不會趕。</li>\n<li>紐約住在 Queens 的 Long Island City（LIC），選 Court Sq 或 Queens Plaza 站走路 10 分鐘內的飯店，搭 E 線到 34 St–Penn Station 看球，賽後也搭 E 線回去。</li>\n<li>球賽時間以 NBA 官方公佈為準，之後仍可能調整；預訂不可退的機票與住宿前請再確認一次賽程。</li>\n<li>回程 BR03 是 3/6 23:55 起飛，所以 3/5 要在華盛頓住一晚，3/6 退房後白天逛景點，傍晚前往機場。</li>\n<li>長榮華盛頓航線每週只飛四班，改票空間比較小。</li>\n<li>想看騎士或 LeBron 博物館的話，看 <a href=\"plan-b.html\">Plan B（開車版）</a>。</li>\n</ul></div>\n\n",
@@ -549,9 +572,26 @@ function dayHtml(P,x){
 <div class="dbody">${x.i.map(i=>`<div class="it ${i[1].includes("NBA")?"g":""}"><time>${i[0]}</time><div><h4>${i[1].replace(/\s*🏀/g,"")}</h4><p>${i[2]}</p></div></div>`).join("")}
 <div class="meta"><span>住宿：${x.s}</span></div></div>`;
 }
+const ICON={fly:'<svg viewBox="0 0 24 24"><path d="M21 15.5v-1.8L13.5 9V4.5a1.5 1.5 0 0 0-3 0V9L3 13.7v1.8l7.5-2.2V18l-2 1.5V21l3.5-1 3.5 1v-1.5l-2-1.5v-4.7z"/></svg>',train:'<svg viewBox="0 0 24 24"><rect x="5" y="3.5" width="14" height="13" rx="3"/><path d="M5 11h14M8 20l2-3.5M16 20l-2-3.5"/><circle cx="9" cy="14" r=".8"/><circle cx="15" cy="14" r=".8"/></svg>',car:'<svg viewBox="0 0 24 24"><path d="M4 16v-3l1.7-4.2A2 2 0 0 1 7.6 7.5h8.8a2 2 0 0 1 1.9 1.3L20 13v3"/><path d="M3.5 16h17v2.5h-3V17h-11v1.5h-3z"/><circle cx="7.5" cy="13.2" r=".9"/><circle cx="16.5" cy="13.2" r=".9"/></svg>'};
+function journey(h){
+ const d=document.createElement("div");d.innerHTML=h;const out=[];
+ [...d.children].forEach(el=>{
+  if(el.classList.contains("node")){
+   const c=((el.getAttribute("style")||"").match(/--c:(var\(--\w+\))/)||[])[1]||"var(--accent)";
+   const rg=el.querySelector("span").textContent,m=rg.match(/(\d+)\/(\d+)\D+(\d+)\/(\d+)/);
+   const nt=m?Math.round((new Date(2027,m[3]-1,m[4])-new Date(2027,m[1]-1,m[2]))/864e5):0;
+   out.push(`<div class="stop" style="--c:${c}"><b>${el.querySelector("b").textContent}</b><span>${rg}</span>${nt?`<span class="nt">${nt} 晚</span>`:""}</div>`);
+  }else if(el.classList.contains("seg")){
+   const tx=el.textContent.trim(),m=/飛機/.test(tx)?"fly":/開車/.test(tx)?"car":"train";
+   const time=tx.replace(/^.*?約\s*/,"").replace(/（.*?）/g,"").trim();
+   out.push(`<div class="hop ${m}"><span class="ic">${ICON[m]}</span><small>${time}</small></div>`);
+  }
+ });
+ return out.join("");
+}
 function renderSeg(k){
  $("seg3").innerHTML=Object.keys(META).map(p=>`<button role="tab" class="${p===k?"on":""}" style="--k:${META[p].col}" data-plan="${p}" aria-selected="${p===k}"><b>${META[p].n}</b><small>${META[p].tag}</small></button>`).join("");
- $("pdesc").innerHTML=`${META[k].d}<span class="phint">　共有 3 個版本，點最上方切換。</span>`;
+ $("pdesc").innerHTML=`${META[k].d}<span class="phint">共有 3 個版本，點最上方切換。</span>`;
 }
 function renderTabs(){
  $("tabs").firstElementChild.innerHTML=TABS.map(t=>`<button data-tab="${t[0]}" class="${t[0]===tab?"on":""}" aria-label="${t[2]}">${t[1]}${t[2]}</button>`).join("");
@@ -601,7 +641,7 @@ function render(k){
  const P=PLANS[k];cur=k;
  document.title="美東七六人追球之旅 "+META[k].t.replace("｜"," ")+" 2027.02.25–03.08";
  document.documentElement.dataset.plan=k;$("ppill").textContent=META[k].t;
- $("route").innerHTML=P.route;$("stats").innerHTML=P.stats;
+ $("route").innerHTML=journey(P.route);$("stats").innerHTML='<div><strong>12</strong>天行程</div>'+P.stats;
  renderSeg(k);
  $("thead").textContent=P.thead;$("tickets").innerHTML=P.tickets;$("flights").innerHTML=P.flights;document.querySelectorAll("#flights .fl").forEach(f=>f.classList.add(f.textContent.includes("長榮")?"fl-eva":"fl-dom"));
  renderMap(P);renderCal(P);renderDays(P);
@@ -646,14 +686,13 @@ document.addEventListener("keydown",e=>{
   const P=PLANS[cur],i=P.D.findIndex(x=>x.n===day);
   if(dx<0&&i<P.D.length-1)setDay(P.D[i+1].n);if(dx>0&&i>0)setDay(P.D[i-1].n)},{passive:true});})();
 window.addEventListener("popstate",()=>{const s=readUrl();tab=s.t;day=s.d;if(s.k!==cur)render(s.k);else{renderDays(PLANS[cur]);renderTabs()}});
-const SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>';
-const MOON='<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
 const dq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
 function effTheme(){return document.documentElement.dataset.theme||(dq&&dq.matches?"dark":"light")}
 function paintTheme(){
  const t=effTheme(),b=$("themebtn");
- b.innerHTML=t==="dark"?SUN:MOON;
- const lab=t==="dark"?"切換為淺色模式":"切換為深色模式";b.setAttribute("aria-label",lab);b.title=lab;
+ document.documentElement.dataset.eff=t;
+ b.setAttribute("aria-checked",String(t==="dark"));
+ const lab=t==="dark"?"深色模式（點擊切換為淺色）":"淺色模式（點擊切換為深色）";b.setAttribute("aria-label",lab);b.title=lab;
  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.removeAttribute("media");m.content=t==="dark"?"#0e1014":"#f6f6f4"});
 }
 function setTheme(t){
