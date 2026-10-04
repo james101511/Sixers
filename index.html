@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script>try{var t=localStorage.getItem("theme");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}</script>
 <meta name="theme-color" content="#f6f6f4" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#0e1014" media="(prefers-color-scheme: dark)">
 <title>美東七六人追球之旅 2027.02.25–03.08</title>
@@ -19,12 +20,19 @@
 --sh:0 1px 2px rgba(20,24,40,.04),0 12px 32px -14px rgba(20,24,40,.16);
 --spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.2,.8,.2,1)
 }
-@media(prefers-color-scheme:dark){:root{
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
 --bg:#0e1014;--card:#171a20;--ink:#eceff4;--mute:#98a1b1;--line:#262b33;--soft:#1e222a;
 --accent:#9db9ff;--red:#ff6b78;--sea:#18202b;--land:#222831;--bord:#323945;
 --fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6;
 --pk-a:#ff9f0a;--pk-b:#0a84ff;--pk-c:#bf5af2;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -14px rgba(0,0,0,.6)
 }}
+:root[data-theme="dark"]{
+--bg:#0e1014;--card:#171a20;--ink:#eceff4;--mute:#98a1b1;--line:#262b33;--soft:#1e222a;
+--accent:#9db9ff;--red:#ff6b78;--sea:#18202b;--land:#222831;--bord:#323945;
+--fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6;
+--pk-a:#ff9f0a;--pk-b:#0a84ff;--pk-c:#bf5af2;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -14px rgba(0,0,0,.6)
+}
+:root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
 *{box-sizing:border-box;margin:0}
 html{background:var(--bg);color-scheme:light dark}
 body{font-family:var(--f);background:var(--bg);color:var(--ink);line-height:1.65;-webkit-font-smoothing:antialiased;font-variant-numeric:tabular-nums}
@@ -117,7 +125,8 @@ a.cd:hover{box-shadow:0 0 0 1.5px var(--accent) inset}
 .cd .ev.h{color:var(--red);font-weight:600}
 .cd .ev.f{color:var(--accent)}
 .cd .ev.l{color:#a8741a;font-size:10.5px}
-@media(prefers-color-scheme:dark){.cd .ev.l{color:#e0b25c}}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .cd .ev.l{color:#e0b25c}}
+:root[data-theme="dark"] .cd .ev.l{color:#e0b25c}
 .leg{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--mute);margin:12px 2px 2px}
 .leg i{display:inline-block;width:10px;height:10px;border-radius:50%;vertical-align:-1px;margin-right:5px}
 .calsum{margin-top:10px;font-size:13px;color:var(--mute)}.calsum b{color:var(--ink)}
@@ -243,10 +252,17 @@ h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:34px 0 14px}
 @media(prefers-reduced-motion:reduce){.panel.on>*,.panel.on .tk,.panel.on .fl{animation:none!important}}
 @media(max-width:600px){.tk .l{flex-basis:58px;width:58px;height:58px}.tk .l b{font-size:17px;line-height:39px}.stats strong{font-size:26px}.fl p{font-size:24px}}
 header .pdesc{margin-top:10px;max-width:62ch;font-size:13.5px}.phint{color:var(--mute);opacity:.8}
+.top .wrap{display:flex;align-items:center;gap:10px}
+.seg3{flex:1;min-width:0}
+.themebtn{flex:0 0 auto;width:44px;height:44px;border-radius:14px;border:0;background:color-mix(in srgb,var(--mute) 14%,transparent);color:var(--ink);cursor:pointer;display:grid;place-items:center;transition:transform .2s var(--spring),background .2s}
+.themebtn:active{transform:scale(.92)}
+.themebtn svg{width:20px;height:20px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;transition:transform .45s var(--spring)}
+.themebtn:hover svg{transform:rotate(18deg)}
+html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease,stroke .35s ease!important}
 </style>
 </head>
 <body>
-<div class="top" id="top"><div class="wrap"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div></div></div>
+<div class="top" id="top"><div class="wrap"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><button class="themebtn" id="themebtn" type="button"></button></div></div>
 <header><div class="wrap">
 <div class="sub">NBA ROAD TRIP · 2027</div>
 <h1>美東七六人追球之旅</h1>
@@ -630,6 +646,25 @@ document.addEventListener("keydown",e=>{
   const P=PLANS[cur],i=P.D.findIndex(x=>x.n===day);
   if(dx<0&&i<P.D.length-1)setDay(P.D[i+1].n);if(dx>0&&i>0)setDay(P.D[i-1].n)},{passive:true});})();
 window.addEventListener("popstate",()=>{const s=readUrl();tab=s.t;day=s.d;if(s.k!==cur)render(s.k);else{renderDays(PLANS[cur]);renderTabs()}});
+const SUN='<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg>';
+const MOON='<svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg>';
+const dq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
+function effTheme(){return document.documentElement.dataset.theme||(dq&&dq.matches?"dark":"light")}
+function paintTheme(){
+ const t=effTheme(),b=$("themebtn");
+ b.innerHTML=t==="dark"?SUN:MOON;
+ const lab=t==="dark"?"切換為淺色模式":"切換為深色模式";b.setAttribute("aria-label",lab);b.title=lab;
+ document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.removeAttribute("media");m.content=t==="dark"?"#0e1014":"#f6f6f4"});
+}
+function setTheme(t){
+ const r=document.documentElement;r.classList.add("theme-anim");r.dataset.theme=t;
+ try{localStorage.setItem("theme",t)}catch(e){}
+ paintTheme();setTimeout(()=>r.classList.remove("theme-anim"),450);
+}
+$("themebtn").addEventListener("click",()=>setTheme(effTheme()==="dark"?"light":"dark"));
+if(dq&&dq.addEventListener)dq.addEventListener("change",()=>{if(!document.documentElement.dataset.theme)paintTheme()});
+paintTheme();
+
 {const s=readUrl();tab=s.t;day=s.d;render(s.k);sync(false)}
 </script>
 </body>
