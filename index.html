@@ -120,6 +120,50 @@ a.cd:hover{box-shadow:0 0 0 2px var(--navy)}
 @media(prefers-reduced-motion:reduce){*{transition:none!important}}
 #view{transition:opacity .18s ease}
 #view.sw{opacity:0}
+
+/* ===== 版面：分頁式 ===== */
+header{padding:26px 0 20px}
+header h1{font-size:clamp(26px,5vw,40px)}
+header .sub{font-size:15px;margin-top:6px}
+.route{margin-top:22px}
+.stats{margin-top:18px;gap:22px}.stats strong{font-size:26px}
+.top{position:sticky;top:0;z-index:20;background:rgba(238,242,248,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.top .wrap{padding-top:8px;padding-bottom:8px}
+.plabel{font-size:12px;color:var(--mute);margin:0 0 6px 2px}.plabel b{color:var(--ink)}
+.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.seg3 button{border:2px solid var(--k);background:#fff;color:var(--k);padding:6px 6px 7px;border-radius:12px;font:inherit;cursor:pointer;line-height:1.2;text-align:center;transition:background .15s,color .15s,transform .1s}
+.seg3 button b{display:block;font-size:16px;font-weight:900;letter-spacing:.02em}
+.seg3 button small{display:block;font-size:12px;font-weight:500;opacity:.9;margin-top:1px;white-space:nowrap}
+.seg3 button:active{transform:scale(.97)}
+.seg3 button.on{background:var(--k);color:#fff;box-shadow:0 2px 6px rgba(11,42,91,.3)}
+@media(max-width:380px){.seg3 button small{font-size:11px}}
+.pdesc{font-size:12.5px;color:var(--mute);margin-top:6px;line-height:1.45}
+main{padding-bottom:96px;min-height:60vh}
+.panel{display:none}
+.panel.on{display:block;animation:pin .22s ease}
+@keyframes pin{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+.panel>h2:first-child{margin-top:22px}
+.tabs{position:fixed;top:auto;left:0;right:0;bottom:0;border-bottom:0;z-index:30;background:rgba(255,255,255,.97);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding-bottom:env(safe-area-inset-bottom)}
+.tabs .wrap{display:flex;padding:0 6px}
+.tabs button{flex:1;border:0;background:none;padding:7px 2px 6px;font:inherit;font-size:11.5px;color:var(--mute);display:flex;flex-direction:column;align-items:center;gap:1px;cursor:pointer;border-top:3px solid transparent;margin-top:-1px}
+.tabs button i{font-style:normal;font-size:20px;line-height:1.2}
+.tabs button.on{color:var(--navy);font-weight:700;border-top-color:var(--red)}
+.dchips{display:flex;gap:6px;overflow-x:auto;padding:4px 2px 12px;scroll-snap-type:x proximity;-webkit-overflow-scrolling:touch}
+.dchip{flex:0 0 auto;scroll-snap-align:center;border:1px solid var(--line);background:#fff;border-radius:12px;padding:5px 10px 6px;text-align:center;border-top:4px solid var(--c);cursor:pointer;font:inherit;color:var(--ink);min-width:62px}
+.dchip b{font-family:var(--n);font-size:18px;display:block;line-height:1.15}
+.dchip span{font-size:11px;color:var(--mute);display:block;white-space:nowrap}
+.dchip.on{background:var(--c);color:#fff;border-color:var(--c)}.dchip.on span{color:#fff;opacity:.92}
+.dcard{background:#fff;border-radius:12px;border-left:6px solid var(--c);padding:16px 18px 14px}
+.dh2{display:flex;gap:14px;align-items:center;padding-bottom:8px}
+.dbody .it:first-child{border-top:0}
+.dnav{display:flex;justify-content:space-between;gap:10px;margin-top:12px}
+.dnav button{flex:1;font:inherit;font-size:14px;padding:9px 12px;border-radius:10px;border:1px solid var(--navy);background:#fff;color:var(--navy);cursor:pointer}
+.dnav button:disabled{opacity:.35;cursor:default}
+.dprint{display:none}
+.sec{margin-top:26px}.sec:first-child{margin-top:0}
+.sec>h2{margin-top:0}
+a.cd{cursor:pointer}
+@media print{.top,.tabs{display:none}.panel{display:block!important;animation:none}.dprint{display:block}.dchips,.dcard,.dnav{display:none}main{padding-bottom:0}}
 </style>
 </head>
 <body>
@@ -130,39 +174,44 @@ a.cd:hover{box-shadow:0 0 0 2px var(--navy)}
 <div class="route" id="route"></div>
 <div class="stats" id="stats"></div>
 </div></header>
-<div class="plans"><div class="wrap" id="plans"></div></div>
-<nav><div class="wrap" id="nav"></div></nav>
+<div class="top" id="top"><div class="wrap"><div class="plabel"><b>這份行程有 3 個版本</b>，點下面切換：</div><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><div class="pdesc" id="pdesc"></div></div></div>
 <main class="wrap" id="view">
+<section class="panel" id="p-ov" data-tab="ov">
 <h2 id="thead"></h2>
 <div class="tickets" id="tickets"></div>
-
 <h2>機票</h2>
 <div class="flights" id="flights"></div>
-
+</section>
+<section class="panel" id="p-map" data-tab="map">
 <h2>路線地圖｜怎麼飛、怎麼走</h2>
 <div class="mapwrap"><div id="routemap"></div>
 <div class="mleg"><span><i class="f" style="border-color:#d62839"></i>✈ 飛機</span><span><i style="border-color:#2f7d5b"></i>🚆 火車</span><span><i style="border-color:#a8651b"></i>🚗 開車</span></div>
 <div class="legs" id="legs"></div>
 <p class="mnote">美國很大，城市之間常要搭飛機：芝加哥在中西部（五大湖旁），費城、紐約、華盛頓都在東北岸，彼此很近、火車就夠。地圖只是示意，距離為約略值。</p></div>
-
+</section>
+<section class="panel" id="p-cal" data-tab="cal">
 <h2>行程月曆</h2>
 <div class="calwrap"><div class="cal" id="cal" role="grid" aria-label="2027 年 2–3 月行程月曆"></div>
-<div class="leg"><span><i style="background:#fdecee;border:1px solid #f1b8bf"></i>台灣放假日</span><span><i style="background:var(--red)"></i>球賽</span><span><i style="background:#dbe9f7"></i>航班</span><span><i style="background:#fff3cf"></i>需請假</span><span>點日期可跳到當天行程</span></div>
+<div class="leg"><span><i style="background:#fdecee;border:1px solid #f1b8bf"></i>台灣放假日</span><span><i style="background:var(--red)"></i>球賽</span><span><i style="background:#dbe9f7"></i>航班</span><span><i style="background:#fff3cf"></i>需請假</span><span>點日期可看當天行程</span></div>
 <div class="calsum" id="calsum"></div></div>
-
+</section>
+<section class="panel" id="p-days" data-tab="days">
 <h2>每日行程</h2>
-<div class="tools"><button id="ex">全部展開</button><button id="co">全部收合</button></div>
-<div id="days"></div>
-
-<h2>住宿安排</h2>
-<div class="stay" id="stay"></div>
-
-<div id="transport"></div>
-
-<h2>各城市氣候與穿著</h2>
-<div class="stay" id="wx"></div>
+<div class="dchips" id="dchips" role="tablist" aria-label="選擇日期"></div>
+<div id="dcard"></div>
+<div class="dprint" id="dprint"></div>
+</section>
+<section class="panel" id="p-stay" data-tab="stay">
+<div class="sec"><h2>住宿安排</h2><div class="stay" id="stay"></div></div>
+<div class="sec" id="transport"></div>
+<div class="sec"><h2>各城市氣候與穿著</h2><div class="stay" id="wx"></div></div>
+</section>
+<section class="panel" id="p-notes" data-tab="notes">
+<div id="notes"></div>
+</section>
 <footer>賽程資料來源：NBA 官方與 ESPN 公佈之 2026-27 例行賽賽程。景點開放時間與票務請出發前再確認。</footer>
 </main>
+<nav class="tabs" id="tabs" aria-label="內容分頁"><div class="wrap"></div></nav>
 <script src="trip-map.js"></script>
 <script>
 const PLANS={
@@ -389,30 +438,36 @@ legs:[{mode:"fly",from:"chi",to:"phi",bend:-0.1},{mode:"train",from:"phi",to:"wa
 };
 
 const META={
- a:{t:"Plan A｜紐約版",d:"芝加哥飛紐約，之後搭 Amtrak，不開車。看 4 場球（紐約 2 場、費城 2 場）。",s:"A 紐約",col:"var(--nyc)"},
- b:{t:"Plan B｜開車版",d:"租車芝加哥 → 克里夫蘭 → 費城。含 LeBron 博物館、騎士主場，看 3 場球。冬季長途開車有風險。",s:"B 開車",col:"var(--navy)"},
- c:{t:"Plan C｜芝加哥版",d:"待在芝加哥看公牛，3/1 再飛費城，不去紐約、不開車。看 3 場球（公牛 1 場、費城 2 場）。",s:"C 芝加哥",col:"var(--pc)"}
+ a:{t:"Plan A｜紐約版",d:"芝加哥飛紐約，之後搭 Amtrak，不開車。看 4 場球（紐約 2 場、費城 2 場）。",s:"A 紐約",n:"Plan A",tag:"紐約・不開車",col:"var(--nyc)"},
+ b:{t:"Plan B｜開車版",d:"租車芝加哥 → 克里夫蘭 → 費城。含 LeBron 博物館、騎士主場，看 3 場球。冬季長途開車有風險。",s:"B 開車",n:"Plan B",tag:"開車・克里夫蘭",col:"var(--navy)"},
+ c:{t:"Plan C｜芝加哥版",d:"待在芝加哥看公牛，3/1 再飛費城，不去紐約、不開車。看 3 場球（公牛 1 場、費城 2 場）。",s:"C 芝加哥",n:"Plan C",tag:"芝加哥・看公牛",col:"var(--pc)"}
 };
+const TABS=[["ov","🎟","總覽"],["map","🗺","地圖"],["cal","📅","月曆"],["days","🧭","行程"],["stay","🏨","住宿交通"],["notes","⚠️","須知"]];
 const $=id=>document.getElementById(id);
 const HOL={"2/28":"和平紀念日","3/1":"和平紀念日補假"};
-let cur=null;
-function renderSelector(k){
- $("plans").innerHTML='<div class="lead"><b>這份行程有三個版本</b>，請選一個查看：</div>'+Object.keys(META).map(p=>{const m=META[p],on=p===k;
-  return `<a class="pc${on?" cur":""}" style="--k:${m.col}" href="?plan=${p}" data-plan="${p}"${on?' aria-current="page"':""}><h3>${m.t}</h3><p>${m.d}</p>${on?"":'<span class="go">切換到這個版本 →</span>'}</a>`}).join("");
+let cur=null,tab="ov",day=1;
+function dayHtml(P,x){
+ return `<div class="dh2"><div class="dn"><b>${x.d}</b><span>週${x.w}</span></div><div class="dt"><h3><span class="chip">${P.C[x.c]}</span>${x.g?'<span class="chip r">賽日</span>':""}${x.t}</h3><p>${x.m}</p></div></div>
+<div class="dbody">${x.i.map(i=>`<div class="it ${i[1].includes("NBA")?"g":""}"><time>${i[0]}</time><div><h4>${i[1]}</h4><p>${i[2]}</p></div></div>`).join("")}
+<div class="meta"><span>住宿：${x.s}</span></div></div>`;
 }
-function renderNav(k){
- const P=PLANS[k];
- $("nav").innerHTML=Object.keys(META).map(p=>`<a class="pl${p===k?" on":""}" style="--k:${META[p].col}" href="?plan=${p}" data-plan="${p}">${META[p].s}</a>`).join("")
-  +P.D.map(x=>`<a href="#d${x.n}" class="${x.g?"g":""}">${x.d} ${P.C[x.c]}</a>`).join("");
+function renderSeg(k){
+ $("seg3").innerHTML=Object.keys(META).map(p=>`<button role="tab" class="${p===k?"on":""}" style="--k:${META[p].col}" data-plan="${p}" aria-selected="${p===k}"><b>${META[p].n}</b><small>${META[p].tag}</small></button>`).join("");
+ $("pdesc").innerHTML=`<b>${META[k].t}</b>：${META[k].d}`;
+}
+function renderTabs(){
+ $("tabs").firstElementChild.innerHTML=TABS.map(t=>`<button data-tab="${t[0]}" class="${t[0]===tab?"on":""}" aria-label="${t[2]}"><i>${t[1]}</i>${t[2]}</button>`).join("");
+ document.querySelectorAll(".panel").forEach(p=>p.classList.toggle("on",p.dataset.tab===tab));
 }
 function renderDays(P){
- $("days").innerHTML=P.D.map(x=>`<section class="day ${x.g?"game":""}" id="d${x.n}" style="--c:var(--${x.c})">
-<button class="dh" aria-expanded="false"><div class="dn"><b>${x.d}</b><span>週${x.w}</span></div>
-<div class="dt"><h3><span class="chip">${P.C[x.c]}</span>${x.g?'<span class="chip r">賽日</span>':""}${x.t}</h3><p>${x.m}</p></div><span class="car">›</span></button>
-<div class="db">${x.i.map(i=>`<div class="it ${i[1].includes("NBA")?"g":""}"><time>${i[0]}</time><div><h4>${i[1]}</h4><p>${i[2]}</p></div></div>`).join("")}
-<div class="meta"><span>住宿：${x.s}</span></div></div></section>`).join("");
- const t=location.hash&&document.querySelector(location.hash);
- (t&&t.classList&&t.classList.contains("day")?t:$("d1")).classList.add("open");
+ if(!P.D.some(x=>x.n===day))day=1;
+ $("dchips").innerHTML=P.D.map(x=>`<button class="dchip${x.n===day?" on":""}${x.g?" g":""}" style="--c:var(--${x.c})" data-day="${x.n}" role="tab" aria-selected="${x.n===day}"><b>${x.d}</b><span>${P.C[x.c]}${x.g?" 🏀":""}</span></button>`).join("");
+ const x=P.D.find(d=>d.n===day);
+ const i=P.D.indexOf(x),prev=P.D[i-1],next=P.D[i+1];
+ $("dcard").innerHTML=`<div class="dcard" style="--c:var(--${x.c})">${dayHtml(P,x)}</div>
+<div class="dnav"><button data-day="${prev?prev.n:""}" ${prev?"":"disabled"}>‹ ${prev?prev.d:"前一天"}</button><button data-day="${next?next.n:""}" ${next?"":"disabled"}>${next?next.d:"後一天"} ›</button></div>`;
+ const act=$("dchips").querySelector(".on");if(act)act.scrollIntoView({inline:"center",block:"nearest"});
+ $("dprint").innerHTML=P.D.map(y=>`<div class="dcard" style="--c:var(--${y.c});margin:12px 0">${dayHtml(P,y)}</div>`).join("");
 }
 function renderCal(P){
  const first=new Date(2027,1,21),start=new Date(2027,1,25),end=new Date(2027,2,8);
@@ -422,19 +477,19 @@ function renderCal(P){
  for(let i=0;i<21;i++){
   const dt=new Date(first.getFullYear(),first.getMonth(),first.getDate()+i);
   const key=(dt.getMonth()+1)+"/"+dt.getDate(),wd=dt.getDay(),we=wd===0||wd===6;
-  const inTrip=dt>=start&&dt<=end,hol=HOL[key],day=byDate[key];
+  const inTrip=dt>=start&&dt<=end,hol=HOL[key],dd=byDate[key];
   const cls="cd"+(inTrip?" in":" out")+(we?" we":"")+(hol?" hol":"");
   let inner=`<span class="dd">${dt.getDate()===1||i===0?key:dt.getDate()}</span>`;
   if(hol)inner+=`<span class="ev h">${hol}</span>`;
   if(inTrip){
-   if(day)inner+=`<span class="city">${P.C[day.c]}</span>`;
+   if(dd)inner+=`<span class="city">${P.C[dd.c]}</span>`;
    else if(key==="3/7")inner+=`<span class="city" style="color:var(--mute)">空中</span>`;
    else if(key==="3/8")inner+=`<span class="city" style="color:var(--mute)">台北</span>`;
    (P.EV[key]||[]).forEach(e=>inner+=`<span class="ev ${e[0]}">${e[1]}</span>`);
    if(!we&&!hol){leave.push(key);inner+=`<span class="ev l">需請假${key==="3/8"?"（半天?）":""}</span>`;}
   }
-  const st=day?` style="--c:var(--${day.c})"`:inTrip?' style="--c:var(--mute)"':"";
-  h+=day?`<a class="${cls}" href="#d${day.n}"${st}>${inner}</a>`:`<div class="${cls}"${st}>${inner}</div>`;
+  const st=dd?` style="--c:var(--${dd.c})"`:inTrip?' style="--c:var(--mute)"':"";
+  h+=dd?`<a class="${cls}" href="?plan=${cur}&tab=days&d=${dd.n}" data-day="${dd.n}"${st}>${inner}</a>`:`<div class="${cls}"${st}>${inner}</div>`;
  }
  $("cal").innerHTML=h;
  $("calsum").innerHTML=`<b>台灣上班日需請假：${leave.length} 天</b>（${leave.join("、")}）。3/1 為和平紀念日補假，3/8 早上 06:05 才抵達桃園，視情況可只請半天或上午。`;
@@ -446,35 +501,53 @@ function renderMap(P){
 }
 function render(k){
  const P=PLANS[k];cur=k;
- document.title="美東七六人追球之旅 "+P.title.replace(/^.*?(Plan [ABC][^0-9]*?)\s*2027.*$/,"$1")+" 2027.02.25–03.08";
+ document.title="美東七六人追球之旅 "+META[k].t.replace("｜"," ")+" 2027.02.25–03.08";
  $("route").innerHTML=P.route;$("stats").innerHTML=P.stats;
- renderSelector(k);renderNav(k);
+ renderSeg(k);
  $("thead").textContent=P.thead;$("tickets").innerHTML=P.tickets;$("flights").innerHTML=P.flights;
  renderMap(P);renderCal(P);renderDays(P);
  $("stay").innerHTML=P.stay.map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p><p>${a[3]}</p></div>`).join("");
  $("wx").innerHTML=P.wx.map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p></div>`).join("")+`<div class="sc" style="--c:var(--red)"><b>穿著建議</b><p>羽絨外套、保暖內層、手套與防滑鞋。</p></div>`;
- $("transport").innerHTML=P.transport;
+ const at=P.transport.indexOf("<h2>出發前確認</h2>");
+ $("transport").innerHTML=P.transport.slice(0,at);
+ $("notes").innerHTML=P.transport.slice(at);
+ renderTabs();
 }
-function planFromUrl(){const p=new URLSearchParams(location.search).get("plan");return PLANS[p]?p:"a"}
+function urlState(){const u=new URLSearchParams();u.set("plan",cur);if(tab!=="ov")u.set("tab",tab);if(tab==="days"&&day!==1)u.set("d",day);return "?"+u.toString()}
+function sync(push){const u=urlState();if(u!==location.search){history[push?"pushState":"replaceState"](null,"",u)}}
+function toTop(){const y=$("top").offsetTop;if(scrollY>y)window.scrollTo({top:y})}
+function setTab(t,push){tab=t;renderTabs();toTop();sync(push)}
+function setDay(n){if(!n)return;day=+n;renderDays(PLANS[cur]);sync(false)}
 function go(k,push){
  if(k===cur)return;
  const reduce=window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches;
- const apply=()=>{render(k);if(push)history.pushState(null,"","?plan="+k)};
- if(document.startViewTransition&&!reduce){document.startViewTransition(apply)}
- else{const v=$("view");v.classList.add("sw");setTimeout(()=>{apply();v.classList.remove("sw")},reduce?0:160)}
+ const apply=()=>{render(k);sync(push)};
+ if(document.startViewTransition&&!reduce)document.startViewTransition(apply);else apply();
 }
+function readUrl(){const q=new URLSearchParams(location.search);const k=PLANS[q.get("plan")]?q.get("plan"):"a";
+ let t=TABS.some(x=>x[0]===q.get("tab"))?q.get("tab"):"ov";let d=parseInt(q.get("d"),10)||1;
+ const m=/^#d(\d+)$/.exec(location.hash||"");if(m){t="days";d=+m[1]}
+ return {k,t,d}}
 document.addEventListener("click",e=>{
- const a=e.target.closest("a[data-plan]");
- if(a){e.preventDefault();go(a.dataset.plan,true);return}
- const d=e.target.closest("nav a[href^='#d'], a.cd[href^='#d']");
- if(d){const t=document.querySelector(d.getAttribute("href"));t&&t.classList.add("open")}
- const b=e.target.closest(".dh");
- if(b){const s=b.parentElement;s.classList.toggle("open");b.setAttribute("aria-expanded",s.classList.contains("open"))}
+ const p=e.target.closest("[data-plan]");if(p){go(p.dataset.plan,true);return}
+ const t=e.target.closest("#tabs [data-tab]");if(t){setTab(t.dataset.tab,false);return}
+ const d=e.target.closest("[data-day]");
+ if(d&&!d.disabled){e.preventDefault();const n=+d.dataset.day;if(n){const wasCal=!!d.closest("#cal");day=n;if(wasCal){tab="days";renderTabs();toTop()}renderDays(PLANS[cur]);sync(false)}}
 });
-window.addEventListener("popstate",()=>go(planFromUrl(),false));
-const all=o=>document.querySelectorAll(".day").forEach(s=>{s.classList.toggle("open",o);s.querySelector(".dh").setAttribute("aria-expanded",o)});
-$("ex").onclick=()=>all(true);$("co").onclick=()=>all(false);
-render(planFromUrl());
+document.addEventListener("keydown",e=>{
+ if(tab!=="days"||/INPUT|TEXTAREA|SELECT/.test(e.target.tagName))return;
+ const P=PLANS[cur],i=P.D.findIndex(x=>x.n===day);
+ if(e.key==="ArrowLeft"&&i>0)setDay(P.D[i-1].n);
+ if(e.key==="ArrowRight"&&i<P.D.length-1)setDay(P.D[i+1].n);
+});
+(function(){let sx=0,sy=0;const el=$("dcard");
+ el.addEventListener("touchstart",e=>{sx=e.touches[0].clientX;sy=e.touches[0].clientY},{passive:true});
+ el.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-sx,dy=e.changedTouches[0].clientY-sy;
+  if(Math.abs(dx)<60||Math.abs(dx)<Math.abs(dy)*1.5)return;
+  const P=PLANS[cur],i=P.D.findIndex(x=>x.n===day);
+  if(dx<0&&i<P.D.length-1)setDay(P.D[i+1].n);if(dx>0&&i>0)setDay(P.D[i-1].n)},{passive:true});})();
+window.addEventListener("popstate",()=>{const s=readUrl();tab=s.t;day=s.d;if(s.k!==cur)render(s.k);else{renderDays(PLANS[cur]);renderTabs()}});
+{const s=readUrl();tab=s.t;day=s.d;render(s.k);sync(false)}
 </script>
 </body>
 </html>
