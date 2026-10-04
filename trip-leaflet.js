@@ -6,6 +6,7 @@ var LL={chi:[41.88,-87.63],cle:[41.5,-81.69],akr:[41.08,-81.52],nyc:[40.71,-74.0
 var TPE=[25.08,121.23-360];            // 以 -238.77 表示台北，讓跨太平洋的線連續
 var ORD=[41.98,-87.9],IAD=[38.95,-77.46];
 var LABEL_LEFT={was:1,akr:1};
+var T=function(s){return window.TR?window.TR(s):s};
 var st={map:null,tile:null,ref:null,group:null,legs:[],cities:[],box:null,style:"gray"};
 function css(v){return getComputedStyle(document.documentElement).getPropertyValue(v).trim()}
 function dark(){return document.documentElement.dataset.eff==="dark"}
@@ -34,7 +35,7 @@ function draw(){
   L.polyline(pts,{color:fly,weight:2,opacity:.55,dashArray:"4 7"}).addTo(g);
   var mid=pts[30];L.marker(mid,{icon:planeIcon(angle(pts[28],pts[32])),interactive:false}).addTo(g);
  });
- L.marker(TPE,{icon:L.divIcon({className:"lmw",html:'<div class="lm r tw"><i></i><b>台北</b><span>TPE</span></div>',iconSize:[0,0]})}).addTo(g);
+ L.marker(TPE,{icon:L.divIcon({className:"lmw",html:'<div class="lm r tw"><i></i><b>'+T("台北")+'</b><span>TPE</span></div>',iconSize:[0,0]})}).addTo(g);
  // 本次行程
  st.legs.forEach(function(l){
   var a=LL[l.from],b=LL[l.to];if(!a||!b)return;
@@ -80,18 +81,24 @@ function init(){
  // 自訂按鈕
  var Ctl=L.Control.extend({options:{position:"bottomright"},onAdd:function(){
   var d=L.DomUtil.create("div","lbtns");
-  d.innerHTML='<button type="button" data-lm="fit">回到行程</button><button type="button" data-lm="tw">全球視角</button><button type="button" data-lm="style">樣式：簡約</button>';
+  d.innerHTML='<button type="button" data-lm="fit"></button><button type="button" data-lm="tw"></button><button type="button" data-lm="style"></button>';
   L.DomEvent.disableClickPropagation(d);
   d.addEventListener("click",function(e){var b=e.target.closest("[data-lm]");if(!b)return;
    if(b.dataset.lm==="fit")fit();
    else if(b.dataset.lm==="tw")world();
-   else{st.style=st.style==="gray"?"street":"gray";b.textContent=st.style==="gray"?"樣式：簡約":"樣式：彩色";tiles()}});
+   else{st.style=st.style==="gray"?"street":"gray";relabel();tiles()}});
   return d;}});
  new Ctl().addTo(st.map);
+ relabel();
  draw();
  // 容器大小改變（分頁切換、動畫結束、旋轉手機）時自動校正，並在第一次取得有效尺寸時重新對焦
  if(window.ResizeObserver){var first=true;new ResizeObserver(function(){if(!st.map)return;st.map.invalidateSize();if(first&&el.clientWidth>0){first=false;fit()}}).observe(el)}
  return true;
+}
+function relabel(){
+ var q=function(k){return document.querySelector('.lbtns [data-lm="'+k+'"]')};
+ var a=q("fit"),b=q("tw"),c=q("style");
+ if(a)a.textContent=T("回到行程");if(b)b.textContent=T("全球視角");if(c)c.textContent=T(st.style==="gray"?"樣式：簡約":"樣式：彩色");
 }
 function fit(){if(st.map&&st.box)st.map.fitBounds(st.box,{maxZoom:7,animate:true,padding:[20,20]})}
 function world(){if(!st.map)return;st.map.fitBounds(L.latLngBounds([TPE,ORD,IAD,[15,-238],[50,-70]]).pad(.05),{animate:true})}
@@ -100,6 +107,7 @@ window.TripLive={
  render:function(legs,cities){st.legs=legs||[];st.cities=cities||[];if(st.map){draw();fit()}},
  show:function(){if(!init())return false;st.map.invalidateSize();fit();setTimeout(function(){if(st.map){st.map.invalidateSize();fit()}},320);return true},
  invalidate:function(){if(st.map)st.map.invalidateSize()},
+ relabel:relabel,
  refreshTheme:function(){if(st.map){tiles();draw()}}
 };
 })();
