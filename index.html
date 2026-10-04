@@ -51,7 +51,7 @@ header .sub+h1+.sub{font-size:14px;letter-spacing:.04em;color:var(--mute)}
 /* 版本切換 */
 .top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 .top .wrap{padding-top:10px;padding-bottom:10px}
-.seg3{display:grid;grid-template-columns:repeat(3,1fr);gap:4px;background:var(--soft);border-radius:14px;padding:4px}
+.seg3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;background:var(--soft);border-radius:14px;padding:4px}
 .seg3 button{border:0;background:none;color:var(--mute);padding:7px 6px 8px;border-radius:11px;cursor:pointer;line-height:1.25;text-align:center;transition:background .18s,color .18s,box-shadow .18s}
 .seg3 button b{display:block;font-size:15px;font-weight:700}
 .seg3 button small{display:block;font-size:11.5px;font-weight:400;margin-top:1px;white-space:nowrap}
@@ -265,25 +265,10 @@ p,li,h3,h4,small,.pdesc{text-wrap:pretty}
 @media(max-width:600px){.stop{min-width:0;padding:10px 6px 8px;border-radius:14px}.stop b{font-size:12.5px}.stop span{font-size:10px}.hop{flex:1 1 24px;min-width:24px}.hop .ic{width:22px;height:22px;top:calc(50% - 20px)}.hop .ic svg{width:13px;height:13px}.hop small{font-size:9.5px}}
 .bar{display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--mute) 14%,transparent);border-radius:18px;padding:4px}
 .bar .seg3{flex:1;min-width:0;background:none;padding:0;border-radius:0}
-.vr{flex:0 0 1px;height:26px;background:color-mix(in srgb,var(--mute) 35%,transparent);border-radius:1px}
-.themesw{position:relative;flex:0 0 auto;width:62px;height:34px;margin:0 4px 0 2px;border-radius:99px;border:0;padding:0;cursor:pointer;background:color-mix(in srgb,var(--mute) 24%,transparent);transition:background .3s}
-.themesw svg{stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.themesw .ts,.themesw .tm2{position:absolute;top:9px;width:16px;height:16px;color:var(--mute);opacity:.85}
-.themesw .ts{left:9px}.themesw .tm2{right:9px}
-.themesw .thumb{position:absolute;top:3px;left:3px;width:28px;height:28px;border-radius:50%;background:var(--card);box-shadow:0 1px 4px rgba(0,0,0,.3);transition:transform .38s var(--spring)}
-.themesw .thumb svg{position:absolute;inset:6px;width:16px;height:16px;color:var(--pk);transition:opacity .25s,transform .38s var(--spring)}
-.themesw .t-moon{opacity:0;transform:rotate(-40deg) scale(.6)}
-html[data-eff="dark"] .themesw .thumb{transform:translateX(28px)}
-html[data-eff="dark"] .themesw .t-sun{opacity:0;transform:rotate(60deg) scale(.6)}
-html[data-eff="dark"] .themesw .t-moon{opacity:1;transform:none}
-.themesw:active .thumb{width:32px}
-html[data-eff="dark"] .themesw:active .thumb{transform:translateX(24px)}
 .stats{grid-template-columns:repeat(4,1fr)}
 .stop .nt{display:inline-block;margin-top:5px;font-size:10.5px;font-weight:700;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);padding:1px 8px;border-radius:99px}
 @media(max-width:600px){
  .stats{grid-template-columns:repeat(2,1fr)}
- .themesw{width:56px;height:32px}.themesw .thumb{width:26px;height:26px}.themesw .ts,.themesw .tm2{top:8px;width:15px;height:15px}.themesw .ts{left:8px}.themesw .tm2{right:8px}.themesw .thumb svg{inset:5px}
- html[data-eff="dark"] .themesw .thumb{transform:translateX(24px)}
  .seg3 button{padding:7px 2px 8px}.seg3 button small{font-size:10.5px}
 }
 .mapmode{display:inline-flex;gap:2px;background:color-mix(in srgb,var(--mute) 14%,transparent);border-radius:12px;padding:3px;margin-bottom:12px}
@@ -314,16 +299,33 @@ html[data-eff="dark"] .themesw:active .thumb{transform:translateX(24px)}
 .leaflet-control-attribution a{color:var(--mute)!important}
 .leg b,.mleg b{font-weight:inherit}
 header .wrap{position:relative}
-.langsw{position:absolute;top:-2px;right:20px;display:flex;background:color-mix(in srgb,var(--mute) 16%,transparent);border-radius:99px;padding:3px;gap:2px;z-index:2}
-.langsw button{border:0;background:none;color:var(--mute);font-size:12px;font-weight:700;padding:4px 11px;border-radius:99px;cursor:pointer;transition:background .2s,color .2s}
-.langsw button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.18)}
-@media(max-width:600px){.langsw{right:16px}}
 @media(max-width:420px){html[lang="en"] .journey{zoom:.86}}
+.seg3 button small{overflow:hidden;text-overflow:ellipsis}
+.top .wrap{position:relative}
+.setbtn{flex:0 0 auto;width:44px;height:44px;border:0;border-radius:14px;background:none;color:var(--mute);cursor:pointer;display:grid;place-items:center;margin-right:2px;transition:background .2s,color .2s,transform .2s var(--spring)}
+.setbtn svg{width:22px;height:22px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.setbtn:hover{background:color-mix(in srgb,var(--mute) 14%,transparent);color:var(--ink)}
+.setbtn:active{transform:scale(.92)}
+.setbtn.on{background:var(--card);color:var(--pk);box-shadow:0 1px 3px rgba(0,0,0,.15)}
+.pop{position:absolute;right:20px;top:calc(100% - 2px);z-index:40;width:min(300px,calc(100vw - 32px));background:var(--card);border:1px solid var(--line);border-radius:20px;padding:10px 16px;box-shadow:0 18px 44px -12px rgba(20,24,40,.35),0 2px 6px rgba(20,24,40,.08);transform-origin:top right;animation:popin .22s var(--ease)}
+.pop[hidden]{display:none}
+@keyframes popin{from{opacity:0;transform:translateY(-6px) scale(.94)}to{opacity:1;transform:none}}
+.pop-row{display:flex;align-items:center;justify-content:space-between;gap:14px;padding:8px 0}
+.pop-row+.pop-row{border-top:1px solid var(--line)}
+.pop-l{font-size:14px;font-weight:600}
+.mini{display:flex;background:color-mix(in srgb,var(--mute) 16%,transparent);border-radius:99px;padding:2px;gap:1px}
+.mini button{border:0;background:none;color:var(--mute);font-size:12.5px;font-weight:600;padding:5px 11px;border-radius:99px;cursor:pointer;white-space:nowrap;transition:background .2s,color .2s}
+.mini button.on{background:var(--card);color:var(--ink);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+@media(max-width:600px){.pop{right:16px}}
 </style>
 </head>
 <body>
-<div class="top" id="top"><div class="wrap"><div class="bar"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><span class="vr" aria-hidden="true"></span><button class="themesw" id="themebtn" type="button" role="switch" aria-checked="false" aria-label="深色模式"><svg class="ts" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="tm2" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg><span class="thumb"><svg class="t-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6"/></svg><svg class="t-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8.5 8.5 0 1 0 10.5 10.5z"/></svg></span></button></div></div></div>
-<header><div class="wrap"><div class="langsw" id="langsw" role="group" aria-label="Language"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en">EN</button></div>
+<div class="top" id="top"><div class="wrap"><div class="bar"><div class="seg3" id="seg3" role="tablist" aria-label="行程版本"></div><button class="setbtn" id="setbtn" type="button" aria-haspopup="dialog" aria-expanded="false" aria-controls="pop" aria-label="Settings" title="Settings"><svg viewBox="0 0 24 24"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></svg></button></div>
+<div class="pop" id="pop" role="dialog" aria-label="Settings" hidden>
+<div class="pop-row"><span class="pop-l" data-i="語言">語言</span><div class="mini" id="langsw" role="group" aria-label="Language"><button type="button" data-lang="zh">中文</button><button type="button" data-lang="en">EN</button></div></div>
+<div class="pop-row"><span class="pop-l" data-i="外觀">外觀</span><div class="mini" id="themesw3" role="group" aria-label="Appearance"><button type="button" data-theme="auto" data-i="自動">自動</button><button type="button" data-theme="light" data-i="淺色">淺色</button><button type="button" data-theme="dark" data-i="深色">深色</button></div></div>
+</div></div></div>
+<header><div class="wrap">
 <div class="sub">NBA ROAD TRIP · 2027</div>
 <h1 data-i="美東七六人追球之旅">美東七六人追球之旅</h1>
 <div class="sub">2/25 THU – 3/8 MON · 12 DAYS</div>
@@ -375,7 +377,7 @@ header .wrap{position:relative}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="trip-map.js?v=6"></script>
 <script src="trip-leaflet.js?v=9"></script>
-<script src="en.js?v=4"></script>
+<script src="en.js?v=7"></script>
 <script>
 const PLANS={
 a:{title:"美東七六人追球之旅 Plan A 紐約版 2027.02.25–03.08",route:"<div class=\"node\" style=\"--c:var(--chi)\"><i></i><b>芝加哥</b><span>2/25–2/27</span></div>\n<div class=\"seg\"><em>飛機約 2h20</em></div>\n<div class=\"node\" style=\"--c:var(--nyc)\"><i></i><b>紐約</b><span>2/27–3/2</span></div>\n<div class=\"seg\"><em>Amtrak 約 1.5–2h</em></div>\n<div class=\"node\" style=\"--c:var(--phi)\"><i></i><b>費城</b><span>3/2–3/5</span></div>\n<div class=\"seg\"><em>Amtrak 約 2–3h</em></div>\n<div class=\"node\" style=\"--c:var(--was)\"><i></i><b>華盛頓</b><span>3/5–3/6</span></div>\n",stats:"<div><strong>4</strong>場 NBA 比賽</div><div><strong>4</strong>座城市</div><div><strong>9</strong>晚住宿</div>",thead:"四場比賽",tickets:"<div class=\"tk\"><div class=\"l\"><b>2/27</b><span>週六</span></div><div class=\"r\"><h3>七六人 @ 尼克</h3><p>8:30 PM ET｜Madison Square Garden<br>紐約（客場看七六人）</p><span class=\"tag\">客場</span> <span class=\"price\">最低約 US$407 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-new-york-knicks-vs-philadelphia-76ers-tickets-madison-square-garden-2-27-27-8pm/8205165/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>2/28</b><span>週日</span></div><div class=\"r\"><h3>公鹿 @ 尼克</h3><p>7:30 PM ET｜Madison Square Garden<br>紐約（尼克主場）</p><span class=\"tag\">尼克主場</span> <span class=\"price\">最低約 US$214 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-new-york-knicks-vs-milwaukee-bucks-tickets-madison-square-garden-2-28-27-7pm/8205168/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/3</b><span>週三</span></div><div class=\"r\"><h3>黃蜂 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">主場</span> <span class=\"price\">最低約 US$76 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-charlotte-hornets-tickets-xfinity-mobile-arena-3-3-27-7pm/8205371/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/4</b><span>週四</span></div><div class=\"r\"><h3>湖人 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">全國轉播 Prime Video</span> <span class=\"price\">最低約 US$159 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-los-angeles-lakers-tickets-xfinity-mobile-arena-3-4-27-7pm/8205380/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n",flights:"<div class=\"fl\"><h3>去程｜長榮 BR056</h3><p>2/25 TPE → ORD</p><small>20:00 桃園起飛 → 約 18:35 抵達芝加哥歐海爾（同日）<br>時間以電子機票為準</small></div>\n<div class=\"fl\"><h3>國內段｜芝加哥 → 紐約（尚未訂）</h3><p>2/27 ORD → LGA</p><small>例：American 10:10 → 13:31、United 11:00 → 14:18，直飛約 2 小時 20 分，單程約 NT$4,882（Google Flights 2026/10/3 查詢，標示偏高）<br>也有飛 EWR、JFK 的班次；時間為當地時間</small></div>\n<div class=\"fl\"><h3>回程｜長榮 BR03</h3><p>3/6 IAD → TPE</p><small>3/6（六）23:55 華盛頓杜勒斯起飛 → 3/8（一）06:05 抵達桃園第二航廈</small></div>\n",transport:"<h2>城市間交通（全程不租車）</h2>\n<div class=\"box\"><ul>\n<li><b>2/27 芝加哥 → 紐約</b>：搭飛機，ORD → LGA 直飛約 2 小時 20 分，時差 +1 小時。LGA 到 LIC 可搭免費 Q70 公車到 Jackson Heights，再換 7 號線到 LIC；有行李或想省時間就叫車。</li>\n<li><b>3/2 紐約 → 費城</b>：搭 Amtrak，Penn Station 到 30th Street 站，約 1.5–2 小時。票價我沒查，越早買越便宜，出發前再看。</li>\n<li><b>3/5 費城 → 華盛頓</b>：搭 Amtrak，30th Street 站到 Union Station，Regional 約 2.5–3 小時、Acela 約 2 小時，票價約 US$30–80（依日期浮動）。</li>\n<li>全程不租車，避開冬季開車的風險。紐約、費城、華盛頓都用地鐵與叫車，不用停車費。</li>\n<li>2 月底東北部有暴風雪風險，航班與火車都可能延誤，出發前看天氣預報，行程保留彈性。</li>\n</ul></div>\n\n<h2>出發前確認</h2>\n<div class=\"box warn\"><ul>\n<li>ESTA 在出發前 72 小時以前辦好。</li>\n<li>四場球票自己買：建議走 NBA 官方認可的票務平台（TickPick、Ticketmaster、SeatGeek 等）。球場禁帶大背包，行李記得先放飯店。</li>\n<li>2/27、2/28 兩場都在 Madison Square Garden，就在 Penn Station 上方，賽日人潮多，提早進場。開賽時間依 TickPick 列表為 2/27 約 8:30 PM、2/28 約 7:30 PM，請再用 NBA 官方賽程確認。</li>\n<li>3/2 搭上午的 Amtrak 去費城，建議提早訂票，下午就能開始逛，3/3 晚上 7:00 才有比賽，不會趕。</li>\n<li>紐約住在 Queens 的 Long Island City（LIC），選 Court Sq 或 Queens Plaza 站走路 10 分鐘內的飯店，搭 E 線到 34 St–Penn Station 看球，賽後也搭 E 線回去。</li>\n<li>球賽時間以 NBA 官方公佈為準，之後仍可能調整；預訂不可退的機票與住宿前請再確認一次賽程。</li>\n<li>回程 BR03 是 3/6 23:55 起飛，所以 3/5 要在華盛頓住一晚，3/6 退房後白天逛景點，傍晚前往機場。</li>\n<li>長榮華盛頓航線每週只飛四班，改票空間比較小。</li>\n<li>想看騎士或 LeBron 博物館的話，看 <a href=\"plan-b.html\">Plan B（開車版）</a>。</li>\n</ul></div>\n\n",
@@ -791,20 +793,27 @@ document.addEventListener("keydown",e=>{
 window.addEventListener("popstate",()=>{const s=readUrl();tab=s.t;day=s.d;if(s.k!==cur)render(s.k);else{renderDays(PLANS[cur]);renderTabs()}});
 const dq=window.matchMedia?matchMedia("(prefers-color-scheme: dark)"):null;
 function effTheme(){return document.documentElement.dataset.theme||(dq&&dq.matches?"dark":"light")}
+function themeChoice(){return document.documentElement.dataset.theme||"auto"}
 function paintTheme(){
- const t=effTheme(),b=$("themebtn");
+ const t=effTheme();
  document.documentElement.dataset.eff=t;
  if(window.TripLive)TripLive.refreshTheme();
- b.setAttribute("aria-checked",String(t==="dark"));
- const lab=t==="dark"?"深色模式（點擊切換為淺色）":"淺色模式（點擊切換為深色）";b.setAttribute("aria-label",lab);b.title=lab;
+ document.querySelectorAll("#themesw3 [data-theme]").forEach(b=>b.classList.toggle("on",b.dataset.theme===themeChoice()));
  document.querySelectorAll('meta[name="theme-color"]').forEach(m=>{m.removeAttribute("media");m.content=t==="dark"?"#0e1014":"#f6f6f4"});
 }
-function setTheme(t){
- const r=document.documentElement;r.classList.add("theme-anim");r.dataset.theme=t;
- try{localStorage.setItem("theme",t)}catch(e){}
+function setTheme(c){
+ const r=document.documentElement;r.classList.add("theme-anim");
+ if(c==="auto"){delete r.dataset.theme;try{localStorage.removeItem("theme")}catch(e){}}
+ else{r.dataset.theme=c;try{localStorage.setItem("theme",c)}catch(e){}}
  paintTheme();setTimeout(()=>r.classList.remove("theme-anim"),450);
 }
-$("themebtn").addEventListener("click",()=>setTheme(effTheme()==="dark"?"light":"dark"));
+function setPop(open){const p=$("pop"),b=$("setbtn");p.hidden=!open;b.setAttribute("aria-expanded",String(open));b.classList.toggle("on",open)}
+$("setbtn").addEventListener("click",()=>setPop($("pop").hidden));
+document.addEventListener("click",e=>{
+ const th=e.target.closest("#themesw3 [data-theme]");if(th){setTheme(th.dataset.theme);return}
+ if(!$("pop").hidden&&!e.target.closest("#pop,#setbtn"))setPop(false);
+});
+document.addEventListener("keydown",e=>{if(e.key==="Escape"&&!$("pop").hidden){setPop(false);$("setbtn").focus()}});
 if(dq&&dq.addEventListener)dq.addEventListener("change",()=>{if(!document.documentElement.dataset.theme)paintTheme()});
 paintTheme();
 
