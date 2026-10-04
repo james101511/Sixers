@@ -11,36 +11,36 @@ function curve(a,b,bend){var mx=(a[0]+b[0])/2,my=(a[1]+b[1])/2,dx=b[0]-a[0],dy=b
 function render(id,legs,cities){
  var box=document.getElementById(id);if(!box)return;
  var svg=ns("svg",{viewBox:"572 140 360 210",role:"img","aria-label":"美國東部路線地圖",class:"tm"});
- svg.appendChild(ns("rect",{x:0,y:0,width:975,height:610,fill:"#dbe9f7"}));
- svg.appendChild(ns("path",{d:LAND,fill:"#f6f1e4"}));
- svg.appendChild(ns("path",{d:BORDER,fill:"none",stroke:"#cdbfa0","stroke-width":".6"}));
- var t1=ns("text",{x:722,y:192,"font-size":9,fill:"#7a9bbf","font-style":"italic","text-anchor":"middle"});t1.textContent="五大湖";svg.appendChild(t1);
- var t2=ns("text",{x:895,y:300,"font-size":9,fill:"#7a9bbf","font-style":"italic","text-anchor":"middle"});t2.textContent="大西洋";svg.appendChild(t2);
+ svg.appendChild(ns("rect",{x:0,y:0,width:975,height:610,class:"sea"}));
+ svg.appendChild(ns("path",{d:LAND,class:"land"}));
+ svg.appendChild(ns("path",{d:BORDER,class:"bord"}));
+ var t1=ns("text",{x:722,y:192,"font-size":9,class:"water","font-style":"italic","text-anchor":"middle"});t1.textContent="五大湖";svg.appendChild(t1);
+ var t2=ns("text",{x:895,y:300,"font-size":9,class:"water","font-style":"italic","text-anchor":"middle"});t2.textContent="大西洋";svg.appendChild(t2);
  legs.forEach(function(l){
   var a=P[l.from],b=P[l.to],m=MODE[l.mode];
   if(l.mode==="fly"){
    var c=curve(a,b,l.bend||0.18);
-   svg.appendChild(ns("path",{d:c.d,fill:"none",stroke:m.color,"stroke-width":2,"stroke-dasharray":"5 4","stroke-linecap":"round"}));
+   svg.appendChild(ns("path",{d:c.d,fill:"none",style:"stroke:var(--fly)","stroke-width":2,"stroke-dasharray":"5 4","stroke-linecap":"round"}));
    var p=ns("text",{x:c.mid[0],y:c.mid[1],"font-size":15,"text-anchor":"middle","dominant-baseline":"central",transform:"rotate("+c.ang+" "+c.mid[0]+" "+c.mid[1]+")"});p.textContent="✈";svg.appendChild(p);
   } else {
-   svg.appendChild(ns("line",{x1:a[0],y1:a[1],x2:b[0],y2:b[1],stroke:m.color,"stroke-width":l.mode==="car"?3.2:2.6,"stroke-linecap":"round"}));
+   svg.appendChild(ns("line",{x1:a[0],y1:a[1],x2:b[0],y2:b[1],style:"stroke:var(--"+l.mode+")","stroke-width":l.mode==="car"?3.2:2.4,"stroke-linecap":"round"}));
   }
  });
  cities.forEach(function(c){
   var p=P[c.k];
-  svg.appendChild(ns("circle",{cx:p[0],cy:p[1],r:4.8,fill:"#fff",stroke:c.color||"#0b2a5b","stroke-width":2.6}));
+  svg.appendChild(ns("circle",{cx:p[0],cy:p[1],r:4.8,class:"dot",style:"stroke:"+((!c.color||c.color==="#0b2a5b")?"var(--accent)":c.color),"stroke-width":2.6}));
   var dx=c.dx||0,dy=(c.dy!==undefined?c.dy:(c.sub?-18:-9)),an=c.anchor||"middle";
-  var t=ns("text",{x:p[0]+dx,y:p[1]+dy,"font-size":11,"font-weight":700,"text-anchor":an,fill:"#142238","paint-order":"stroke",stroke:"#f6f1e4","stroke-width":3});
+  var t=ns("text",{x:p[0]+dx,y:p[1]+dy,"font-size":11,"font-weight":700,"text-anchor":an,class:"lbl"});
   t.textContent=c.label;svg.appendChild(t);
-  if(c.sub){var s=ns("text",{x:p[0]+dx,y:p[1]+dy+10,"font-size":8,"text-anchor":an,fill:"#5d6b82","paint-order":"stroke",stroke:"#f6f1e4","stroke-width":3});s.textContent=c.sub;svg.appendChild(s)}
+  if(c.sub){var s=ns("text",{x:p[0]+dx,y:p[1]+dy+10,"font-size":8,"text-anchor":an,class:"sub"});s.textContent=c.sub;svg.appendChild(s)}
  });
  var ins=ns("g",{transform:"translate(576,254) scale(.15)"});
- ins.appendChild(ns("rect",{x:-8,y:-8,width:991,height:626,fill:"#fff",stroke:"#9aa7bb","stroke-width":6,rx:14,opacity:.95}));
- ins.appendChild(ns("path",{d:LAND,fill:"#e4dcc6"}));
+ ins.appendChild(ns("rect",{x:-8,y:-8,width:991,height:626,class:"insbg","stroke-width":6,rx:14,opacity:.95}));
+ ins.appendChild(ns("path",{d:LAND,class:"insland"}));
  ins.appendChild(ns("rect",{x:572,y:140,width:360,height:210,fill:"rgba(214,40,57,.28)",stroke:"#d62839","stroke-width":9}));
  svg.appendChild(ins);
- var w=ns("text",{x:577,y:151,"font-size":8,fill:"#5d6b82"});w.textContent="← 往西是中西部、加州與太平洋，台北在更西邊的亞洲";svg.appendChild(w);
- var cap=ns("text",{x:577,y:348,"font-size":6,fill:"#5d6b82"});cap.textContent="左下小圖：紅框是本圖在美國的位置";svg.appendChild(cap);
+ var w=ns("text",{x:577,y:151,"font-size":8,class:"sub"});w.textContent="← 往西是中西部、加州與太平洋，台北在更西邊的亞洲";svg.appendChild(w);
+ var cap=ns("text",{x:577,y:348,"font-size":6,class:"sub"});cap.textContent="左下小圖：紅框是本圖在美國的位置";svg.appendChild(cap);
  box.innerHTML="";box.appendChild(svg);
 }
 window.TripMap={render:render,MODE:MODE};
