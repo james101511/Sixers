@@ -78,14 +78,14 @@ function init(){
  el.addEventListener("click",function(){st.map.scrollWheelZoom.enable()});
  el.addEventListener("mouseleave",function(){st.map.scrollWheelZoom.disable()});
  // 自訂按鈕
- var Ctl=L.Control.extend({options:{position:"bottomleft"},onAdd:function(){
+ var Ctl=L.Control.extend({options:{position:"bottomright"},onAdd:function(){
   var d=L.DomUtil.create("div","lbtns");
-  d.innerHTML='<button type="button" data-lm="fit">回到行程範圍</button><button type="button" data-lm="tw">看台灣 ↔ 美國</button><button type="button" data-lm="style">街道圖</button>';
+  d.innerHTML='<button type="button" data-lm="fit">回到行程</button><button type="button" data-lm="tw">全球視角</button><button type="button" data-lm="style">樣式：簡約</button>';
   L.DomEvent.disableClickPropagation(d);
   d.addEventListener("click",function(e){var b=e.target.closest("[data-lm]");if(!b)return;
    if(b.dataset.lm==="fit")fit();
    else if(b.dataset.lm==="tw")world();
-   else{st.style=st.style==="gray"?"street":"gray";b.textContent=st.style==="gray"?"街道圖":"簡約圖";tiles()}});
+   else{st.style=st.style==="gray"?"street":"gray";b.textContent=st.style==="gray"?"樣式：簡約":"樣式：彩色";tiles()}});
   return d;}});
  new Ctl().addTo(st.map);
  draw();
