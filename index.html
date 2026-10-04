@@ -14,13 +14,16 @@
 --accent:#0b2a5b;--red:#d62839;--sea:#e9eff5;--land:#f7f6f1;--bord:#dcdad0;
 --chi:#4a86c8;--cle:#8a3b53;--phi:#0b2a5b;--was:#3b8466;--nyc:#e08a3c;--pc:#7a5cc4;
 --fly:#c8372d;--train:#3b8466;--car:#b0732a;
---f:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;--n:var(--f);
---r:16px
+--f:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;--n:var(--f);
+--r:20px;--pk-a:#ff9500;--pk-b:#007aff;--pk-c:#af52de;--pk:var(--pk-a);
+--sh:0 1px 2px rgba(20,24,40,.04),0 12px 32px -14px rgba(20,24,40,.16);
+--spring:cubic-bezier(.34,1.56,.64,1);--ease:cubic-bezier(.2,.8,.2,1)
 }
 @media(prefers-color-scheme:dark){:root{
 --bg:#0e1014;--card:#171a20;--ink:#eceff4;--mute:#98a1b1;--line:#262b33;--soft:#1e222a;
 --accent:#9db9ff;--red:#ff6b78;--sea:#18202b;--land:#222831;--bord:#323945;
---fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6
+--fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6;
+--pk-a:#ff9f0a;--pk-b:#0a84ff;--pk-c:#bf5af2;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -14px rgba(0,0,0,.6)
 }}
 *{box-sizing:border-box;margin:0}
 html{background:var(--bg);color-scheme:light dark}
@@ -177,6 +180,72 @@ footer{padding:36px 0 20px;font-size:12px;color:var(--mute)}
 }
 @media(prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
 @media print{.top,.tabs{display:none}.panel{display:block!important;animation:none}.dprint{display:block}.dchips,.dcard,.dnav{display:none}main{padding-bottom:0}body{background:#fff}}
+
+/* ===== 質感強化（參考 Apple 設計：清晰、層次、柔和動態）===== */
+html[data-plan="a"]{--pk:var(--pk-a)}html[data-plan="b"]{--pk:var(--pk-b)}html[data-plan="c"]{--pk:var(--pk-c)}
+html[data-plan]{--accent:var(--pk)}
+body{background:radial-gradient(900px 420px at 85% -80px,color-mix(in srgb,var(--pk) 16%,transparent),transparent 70%),radial-gradient(700px 360px at -10% -40px,color-mix(in srgb,var(--pk) 9%,transparent),transparent 70%),var(--bg);background-attachment:fixed}
+header{background:transparent;padding-top:38px}
+header h1{font-size:clamp(30px,6.2vw,46px);font-weight:800;letter-spacing:-.025em}
+.ppill{display:inline-block;margin-top:12px;font-size:12.5px;font-weight:700;color:var(--pk);background:color-mix(in srgb,var(--pk) 13%,var(--card));padding:4px 13px;border-radius:99px}
+.node i{width:12px;height:12px;box-shadow:0 0 0 4px color-mix(in srgb,var(--c) 22%,transparent)}
+.seg{background:linear-gradient(90deg,var(--line),color-mix(in srgb,var(--pk) 35%,var(--line)),var(--line))}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:22px}
+.stats div{display:block;background:var(--card);border:1px solid var(--line);border-radius:18px;padding:12px 14px 11px;box-shadow:var(--sh);font-size:12px;color:var(--mute)}
+.stats strong{display:block;font-size:30px;font-weight:800;letter-spacing:-.03em;line-height:1.1;color:var(--ink)}
+.top{background:color-mix(in srgb,var(--bg) 70%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px)}
+.top .plabel,.top .pdesc{max-height:70px;overflow:hidden;transition:max-height .28s var(--ease),opacity .2s,margin .28s var(--ease)}
+.top.compact .plabel,.top.compact .pdesc{max-height:0;opacity:0;margin-top:0;margin-bottom:0}
+.top .wrap{transition:padding .28s var(--ease)}.top.compact .wrap{padding-top:7px;padding-bottom:7px}
+.seg3{background:color-mix(in srgb,var(--mute) 14%,transparent);border-radius:16px}
+.seg3 button{border-radius:13px;transition:background .25s var(--ease),color .25s,box-shadow .25s,transform .2s var(--spring)}
+.seg3 button:active{transform:scale(.96)}
+.seg3 button.on{box-shadow:0 2px 8px -2px rgba(20,24,40,.25),0 0 0 .5px rgba(20,24,40,.08)}
+.seg3 button.on b{color:var(--pk)}
+.tickets,.mapwrap,.calwrap,.dcard,.sc,.box,.lg{border-radius:var(--r);box-shadow:var(--sh)}
+.tickets{border:1px solid var(--line)}
+.tk .l{flex:0 0 62px;display:flex;flex-direction:column-reverse;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,24,40,.06);text-align:center;height:62px}
+.tk .l span{background:var(--red);color:#fff;font-size:10.5px;font-weight:700;line-height:19px;letter-spacing:.08em}
+.tk .l b{font-size:19px;line-height:43px;font-weight:700;letter-spacing:-.02em}
+.tk{align-items:center}
+.tk .r .buy{color:#fff;background:var(--pk);border:0;padding:3px 12px;border-radius:99px;font-size:12px;transition:transform .2s var(--spring),filter .2s}
+.tk .r .buy:hover{filter:brightness(1.07)}.tk .r .buy:active{transform:scale(.95)}
+.fl{position:relative;border:0;border-radius:22px;padding:18px 20px 16px;color:#fff;overflow:hidden;box-shadow:0 14px 30px -14px rgba(10,30,80,.55)}
+.fl::after{content:"";position:absolute;right:-40px;top:-60px;width:180px;height:180px;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.22),transparent 65%);pointer-events:none}
+.fl-eva{background:linear-gradient(140deg,#0a3a8c,#2a79e8)}
+.fl-dom{background:linear-gradient(140deg,#272b34,#5a6275)}
+.fl h3{color:rgba(255,255,255,.72)}
+.fl p{color:#fff;font-size:22px;font-weight:800;letter-spacing:-.02em;white-space:nowrap}
+.fl small{color:rgba(255,255,255,.8)}
+.cd{border-radius:14px;transition:transform .2s var(--spring),box-shadow .2s}
+a.cd:hover{transform:translateY(-1px);box-shadow:0 6px 16px -8px rgba(20,24,40,.35)}
+a.cd:active{transform:scale(.97)}
+.cd .ev.g{background:color-mix(in srgb,var(--red) 12%,transparent);border-radius:6px;padding:0 5px;width:fit-content}
+.dchip{border-radius:16px;transition:background .25s var(--ease),color .25s,border-color .25s,transform .2s var(--spring);box-shadow:var(--sh)}
+.dchip:active{transform:scale(.95)}
+.dchip.on{background:var(--pk);border-color:var(--pk);color:#fff;transform:translateY(-1px)}
+.dnav button{border-radius:14px;transition:transform .2s var(--spring),background .2s}
+.dnav button:active:not(:disabled){transform:scale(.97)}
+.dn{display:flex;flex-direction:column-reverse;width:62px;min-width:62px;height:62px;border-radius:14px;overflow:hidden;background:var(--card);border:1px solid var(--line);box-shadow:0 1px 2px rgba(20,24,40,.06);text-align:center}
+.dn span{background:var(--red);color:#fff;font-size:10.5px;font-weight:700;line-height:19px;letter-spacing:.08em}
+.dn b{font-size:20px;line-height:43px;font-weight:700;display:block;letter-spacing:-.02em}
+.dcard .it time{color:var(--pk)}
+.tabs{background:color-mix(in srgb,var(--card) 72%,transparent);backdrop-filter:saturate(180%) blur(22px);-webkit-backdrop-filter:saturate(180%) blur(22px)}
+.tabs button svg{transition:transform .3s var(--spring)}
+.tabs button.on svg{transform:translateY(-1px) scale(1.14)}
+.tabs button.on{color:var(--pk)}
+@keyframes rise{from{opacity:0;transform:translateY(14px) scale(.985)}to{opacity:1;transform:none}}
+.panel.on{animation:none}
+.panel.on>*{animation:rise .55s var(--ease) both}
+.panel.on>*:nth-child(2){animation-delay:.05s}.panel.on>*:nth-child(3){animation-delay:.1s}.panel.on>*:nth-child(4){animation-delay:.15s}.panel.on>*:nth-child(5){animation-delay:.2s}
+.panel.on .tk{animation:rise .55s var(--ease) both}
+.panel.on .tk:nth-child(2){animation-delay:.07s}.panel.on .tk:nth-child(3){animation-delay:.14s}.panel.on .tk:nth-child(4){animation-delay:.21s}
+.panel.on .fl{animation:rise .6s var(--ease) both}
+.panel.on .fl:nth-child(2){animation-delay:.08s}.panel.on .fl:nth-child(3){animation-delay:.16s}
+h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:34px 0 14px}
+.panel>h2:first-child{margin-top:26px}
+@media(prefers-reduced-motion:reduce){.panel.on>*,.panel.on .tk,.panel.on .fl{animation:none!important}}
+@media(max-width:600px){.tk .l{flex-basis:58px;width:58px;height:58px}.tk .l b{font-size:17px;line-height:39px}.stats strong{font-size:26px}.fl p{font-size:24px}}
 </style>
 </head>
 <body>
@@ -184,6 +253,7 @@ footer{padding:36px 0 20px;font-size:12px;color:var(--mute)}
 <div class="sub">PHILADELPHIA 76ERS ROAD TRIP · 2027</div>
 <h1>美東七六人追球之旅</h1>
 <div class="sub">2/25 THU – 3/8 MON ｜ 12 DAYS</div>
+<div class="ppill" id="ppill"></div>
 <div class="route" id="route"></div>
 <div class="stats" id="stats"></div>
 </div></header>
@@ -516,9 +586,10 @@ function renderMap(P){
 function render(k){
  const P=PLANS[k];cur=k;
  document.title="美東七六人追球之旅 "+META[k].t.replace("｜"," ")+" 2027.02.25–03.08";
+ document.documentElement.dataset.plan=k;$("ppill").textContent=META[k].t;
  $("route").innerHTML=P.route;$("stats").innerHTML=P.stats;
  renderSeg(k);
- $("thead").textContent=P.thead;$("tickets").innerHTML=P.tickets;$("flights").innerHTML=P.flights;
+ $("thead").textContent=P.thead;$("tickets").innerHTML=P.tickets;$("flights").innerHTML=P.flights;document.querySelectorAll("#flights .fl").forEach(f=>f.classList.add(f.textContent.includes("長榮")?"fl-eva":"fl-dom"));
  renderMap(P);renderCal(P);renderDays(P);
  $("stay").innerHTML=P.stay.map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p><p>${a[3]}</p></div>`).join("");
  $("wx").innerHTML=P.wx.map(a=>`<div class="sc" style="--c:var(--${a[0]})"><b>${a[1]}</b><p>${a[2]}</p></div>`).join("")+`<div class="sc" style="--c:var(--red)"><b>穿著建議</b><p>羽絨外套、保暖內層、手套與防滑鞋。</p></div>`;
@@ -561,6 +632,7 @@ document.addEventListener("keydown",e=>{
   const P=PLANS[cur],i=P.D.findIndex(x=>x.n===day);
   if(dx<0&&i<P.D.length-1)setDay(P.D[i+1].n);if(dx>0&&i>0)setDay(P.D[i-1].n)},{passive:true});})();
 window.addEventListener("popstate",()=>{const s=readUrl();tab=s.t;day=s.d;if(s.k!==cur)render(s.k);else{renderDays(PLANS[cur]);renderTabs()}});
+window.addEventListener("scroll",()=>{$("top").classList.toggle("compact",scrollY>140)},{passive:true});
 {const s=readUrl();tab=s.t;day=s.d;render(s.k);sync(false)}
 </script>
 </body>
