@@ -242,7 +242,7 @@ h2{font-size:22px;font-weight:800;letter-spacing:-.02em;margin:34px 0 14px}
 .panel>h2:first-child{margin-top:26px}
 @media(prefers-reduced-motion:reduce){.panel.on>*,.panel.on .tk,.panel.on .fl{animation:none!important}}
 @media(max-width:600px){.tk .l{flex-basis:58px;width:58px;height:58px}.tk .l b{font-size:17px;line-height:39px}.stats strong{font-size:26px}.fl p{font-size:24px}}
-header .pdesc{margin-top:10px;max-width:62ch;font-size:13.5px}.phint{color:var(--mute);opacity:.8}
+header .pdesc{margin-top:10px;font-size:13.5px}.phint{color:var(--mute);opacity:.8}
 html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-color .35s ease,fill .35s ease,stroke .35s ease!important}
 .journey{display:flex;align-items:stretch;margin-top:22px;overflow-x:auto;scrollbar-width:none;padding:4px 2px 10px}
 .journey::-webkit-scrollbar{display:none}
@@ -259,6 +259,9 @@ html.theme-anim *{transition:background-color .35s ease,color .35s ease,border-c
 .hop.fly .ic svg{fill:currentColor;stroke:none}
 .hop small{position:absolute;left:50%;top:calc(50% + 11px);transform:translateX(-50%);font-size:10.5px;color:var(--mute);white-space:nowrap}
 .phint{display:block;margin-top:2px}
+p,li,h3,h4,small,.pdesc{text-wrap:pretty}
+.pdesc{text-wrap:pretty}
+.kw{word-break:keep-all;overflow-wrap:break-word}
 @media(max-width:600px){.stop{min-width:0;padding:10px 6px 8px;border-radius:14px}.stop b{font-size:12.5px}.stop span{font-size:10px}.hop{flex:1 1 24px;min-width:24px}.hop .ic{width:22px;height:22px;top:calc(50% - 20px)}.hop .ic svg{width:13px;height:13px}.hop small{font-size:9.5px}}
 .bar{display:flex;align-items:center;gap:6px;background:color-mix(in srgb,var(--mute) 14%,transparent);border-radius:18px;padding:4px}
 .bar .seg3{flex:1;min-width:0;background:none;padding:0;border-radius:0}
@@ -629,9 +632,24 @@ function setMapMode(m){
  if(m==="live")TripLive.invalidate();
 }
 document.addEventListener("click",e=>{const b=e.target.closest("#mapmode [data-mm]");if(b)setMapMode(b.dataset.mm)});
+const SEG=(typeof Intl!=="undefined"&&Intl.Segmenter)?new Intl.Segmenter("zh-Hant",{granularity:"word"}):null;
+// 中文沒有空格，瀏覽器會在任何字之間換行（例如把「騎士」切成兩行）。這裡用斷詞，只在詞與詞之間允許換行。
+function smartWrap(root){
+ if(!SEG||!root)return;
+ const w=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode:n=>{const p=n.parentElement;
+  if(!p||p.closest("svg,script,style,button,.leaflet-container,#cal,.dprint"))return NodeFilter.FILTER_REJECT;
+  return /[\u4e00-\u9fff]/.test(n.nodeValue)?NodeFilter.FILTER_ACCEPT:NodeFilter.FILTER_REJECT}});
+ const nodes=[];while(w.nextNode())nodes.push(w.currentNode);
+ nodes.forEach(n=>{
+  const parts=[...SEG.segment(n.nodeValue)].map(x=>x.segment);if(parts.length<2)return;
+  const p=n.parentElement,f=document.createDocumentFragment();
+  parts.forEach((t,i)=>{if(i&&!/^[。，、；：！？）」』》〉】,.;:!?)\]]/.test(t)&&!/[（「『《〈【(\[]$/.test(parts[i-1]))f.appendChild(document.createElement("wbr"));f.appendChild(document.createTextNode(t))});
+  p.classList.add("kw");n.replaceWith(f);
+ });
+}
 function renderSeg(k){
  $("seg3").innerHTML=Object.keys(META).map(p=>`<button role="tab" class="${p===k?"on":""}" style="--k:${META[p].col}" data-plan="${p}" aria-selected="${p===k}"><b>${META[p].n}</b><small>${META[p].tag}</small></button>`).join("");
- $("pdesc").innerHTML=`${META[k].d}<span class="phint">共有 3 個版本，點最上方切換。</span>`;
+ $("pdesc").innerHTML=META[k].d+`<span class="phint">共有 3 個版本，點最上方切換。</span>`;
 }
 function renderTabs(){
  $("tabs").firstElementChild.innerHTML=TABS.map(t=>`<button data-tab="${t[0]}" class="${t[0]===tab?"on":""}" aria-label="${t[2]}">${t[1]}${t[2]}</button>`).join("");
@@ -646,6 +664,7 @@ function renderDays(P){
  $("dcard").innerHTML=`<div class="dcard" style="--c:var(--${x.c})">${dayHtml(P,x)}</div>
 <div class="dnav"><button data-day="${prev?prev.n:""}" ${prev?"":"disabled"}>‹ ${prev?prev.d:"前一天"}</button><button data-day="${next?next.n:""}" ${next?"":"disabled"}>${next?next.d:"後一天"} ›</button></div>`;
  const act=$("dchips").querySelector(".on");if(act)act.scrollIntoView({inline:"center",block:"nearest"});
+ smartWrap($("dcard"));
  $("dprint").innerHTML=P.D.map(y=>`<div class="dcard" style="--c:var(--${y.c});margin:12px 0">${dayHtml(P,y)}</div>`).join("");
 }
 function renderCal(P){
@@ -693,6 +712,7 @@ function render(k){
  $("transport").innerHTML=P.transport.slice(0,at);
  $("notes").innerHTML=P.transport.slice(at);
  renderTabs();
+ smartWrap(document.body);
 }
 function urlState(){const u=new URLSearchParams();u.set("plan",cur);if(tab!=="ov")u.set("tab",tab);if(tab==="days"&&day!==1)u.set("d",day);return "?"+u.toString()}
 function sync(push){const u=urlState();if(u!==location.search){history[push?"pushState":"replaceState"](null,"",u)}}
