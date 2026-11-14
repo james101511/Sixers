@@ -14,7 +14,7 @@
 :root{
 --bg:#f6f6f4;--card:#fff;--ink:#16181d;--mute:#6a7180;--line:#e8e8e4;--soft:#f0f0ec;
 --accent:#0b2a5b;--red:#d62839;--sea:#e9eff5;--land:#f7f6f1;--bord:#dcdad0;
---chi:#4a86c8;--cle:#8a3b53;--phi:#0b2a5b;--was:#3b8466;--nyc:#e08a3c;--pc:#7a5cc4;
+--chi:#4a86c8;--phi:#0b2a5b;--was:#3b8466;--nyc:#e08a3c;--pc:#7a5cc4;
 --fly:#c8372d;--train:#3b8466;--car:#b0732a;
 --f:-apple-system,BlinkMacSystemFont,"SF Pro Text","PingFang TC","Noto Sans TC","Microsoft JhengHei",system-ui,sans-serif;--n:var(--f);
 --r:20px;--pk-a:#ff9500;--pk-b:#007aff;--pk-c:#af52de;--pk:var(--pk-a);
@@ -24,13 +24,13 @@
 @media(prefers-color-scheme:dark){:root:not([data-theme="light"]){
 --bg:#0e1014;--card:#171a20;--ink:#eceff4;--mute:#98a1b1;--line:#262b33;--soft:#1e222a;
 --accent:#9db9ff;--red:#ff6b78;--sea:#18202b;--land:#222831;--bord:#323945;
---fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6;
+--fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--chi:#6fa6e6;
 --pk-a:#ff9f0a;--pk-b:#0a84ff;--pk-c:#bf5af2;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -14px rgba(0,0,0,.6)
 }}
 :root[data-theme="dark"]{
 --bg:#0e1014;--card:#171a20;--ink:#eceff4;--mute:#98a1b1;--line:#262b33;--soft:#1e222a;
 --accent:#9db9ff;--red:#ff6b78;--sea:#18202b;--land:#222831;--bord:#323945;
---fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--cle:#d07a96;--chi:#6fa6e6;
+--fly:#ff7a6e;--train:#6cc3a0;--car:#e0a45c;--phi:#9db9ff;--chi:#6fa6e6;
 --pk-a:#ff9f0a;--pk-b:#0a84ff;--pk-c:#bf5af2;--sh:0 1px 2px rgba(0,0,0,.3),0 12px 32px -14px rgba(0,0,0,.6)
 }
 :root[data-theme="light"]{color-scheme:light}:root[data-theme="dark"]{color-scheme:dark}
@@ -399,11 +399,11 @@ header .wrap{position:relative}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <script src="trip-map.js?v=6"></script>
 <script src="trip-leaflet.js?v=9"></script>
-<script src="en.js?v=16"></script>
+<script src="en.js?v=19"></script>
 <script>
 const PLANS={
-c:{title:"美東七六人追球之旅 芝加哥・克里夫蘭版 2027.02.25–03.08",route:"<div class=\"node\" style=\"--c:var(--chi)\"><i></i><b>芝加哥</b><span>2/25–2/28</span></div>\n<div class=\"seg\"><em>飛機約 1h30</em></div>\n<div class=\"node\" style=\"--c:var(--cle)\"><i></i><b>克里夫蘭</b><span>2/28–3/2</span></div>\n<div class=\"seg\"><em>飛機約 1h35</em></div>\n<div class=\"node\" style=\"--c:var(--phi)\"><i></i><b>費城</b><span>3/2–3/5</span></div>\n<div class=\"seg\"><em>Amtrak 約 2–3h</em></div>\n<div class=\"node\" style=\"--c:var(--was)\"><i></i><b>華盛頓</b><span>3/5–3/6</span></div>\n",stats:"<div><strong>4</strong>場 NBA 比賽</div><div><strong>4</strong>座城市</div><div><strong>9</strong>晚住宿</div>",thead:"四場比賽",tickets:"<div class=\"tk\"><div class=\"l\"><b>2/27</b><span>週六</span></div><div class=\"r\"><h3>籃網 @ 公牛</h3><p>7:00 PM ET｜United Center<br>芝加哥（公牛主場）</p><span class=\"tag\">公牛主場</span> <span class=\"price\">最低約 US$41 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-chicago-bulls-vs-brooklyn-nets-tickets-united-center-2-27-27-7pm/8205607/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/1</b><span>週一</span></div><div class=\"r\"><h3>七六人 @ 騎士</h3><p>7:00 PM ET｜Rocket Arena<br>克里夫蘭（客場看七六人）</p><span class=\"tag\">客場</span> <span class=\"price\">最低約 US$118 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-cleveland-cavaliers-vs-philadelphia-76ers-tickets-rocket-arena-3-1-27-7pm/8205291/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/3</b><span>週三</span></div><div class=\"r\"><h3>黃蜂 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">主場</span> <span class=\"price\">最低約 US$55 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-charlotte-hornets-tickets-xfinity-mobile-arena-3-3-27-7pm/8205371/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/4</b><span>週四</span></div><div class=\"r\"><h3>湖人 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">全國轉播 Prime Video</span> <span class=\"price\">最低約 US$147 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-los-angeles-lakers-tickets-xfinity-mobile-arena-3-4-27-7pm/8205380/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n",flights:"<div class=\"fl\"><h3>去程｜長榮 BR056</h3><p>2/25 TPE → ORD</p><small>20:00 桃園起飛 → 19:35 抵達芝加哥歐海爾（同日）<br>時間以電子機票為準</small></div>\n<div class=\"fl\"><h3>國內段｜芝加哥 → 克里夫蘭（尚未訂）</h3><p>2/28 ORD → CLE</p><small>例：10:52 → 13:18、13:47 → 16:23、14:09 → 16:34，直飛約 1 小時 30 分，單程約 NT$5,884；轉機班次約 NT$4,585，但要花 6–7 小時（Google Flights 2026/11/12 查詢）<br>同路線 3/1 約 NT$3,114，較便宜但當天要趕比賽；時間為當地時間</small></div>\n<div class=\"fl\"><h3>國內段｜克里夫蘭 → 費城（尚未訂）</h3><p>3/2 CLE → PHL</p><small>直飛例：11:19 → 12:53、14:48 → 16:22、17:54 → 19:26，約 1 小時 34 分，單程約 NT$7,699；轉機班次約 NT$3,463，但要花 7 小時左右（Google Flights 2026/11/12 查詢）<br>時間為當地時間</small></div>\n<div class=\"fl\"><h3>回程｜長榮 BR03</h3><p>3/6 IAD → TPE</p><small>3/6（六）23:55 華盛頓杜勒斯起飛 → 3/8（一）06:05 抵達桃園第二航廈</small></div>\n",transport:"<h2>城市間交通（全程不租車）</h2>\n<div class=\"box\"><ul>\n<li><b>2/28 芝加哥 → 克里夫蘭</b>：搭飛機，ORD → CLE 直飛約 1 小時 30 分，時差 +1 小時（克里夫蘭比芝加哥快）。機場到市區可搭 RTA 紅線，約 25 分鐘。</li>\n<li><b>3/2 克里夫蘭 → 費城</b>：搭飛機，CLE → PHL 直飛約 1 小時 34 分，機場線（SEPTA）到 Center City 約 25–30 分鐘。</li>\n<li><b>3/5 費城 → 華盛頓</b>：搭 Amtrak，30th Street 站到 Union Station，Regional 約 2.5–3 小時、Acela 約 2 小時，票價約 US$30–80（依日期浮動）。</li>\n<li>全程不租車，避開冬季開車的風險。芝加哥、費城、華盛頓都用地鐵與叫車，不用停車費。</li>\n<li>2 月底東北部有暴風雪風險，航班與火車都可能延誤，出發前看天氣預報，行程保留彈性。</li>\n</ul></div>\n\n<h2>出發前確認</h2>\n<div class=\"box warn\"><ul>\n<li>ESTA 在出發前 72 小時以前辦好。</li>\n<li>四場球票自己買：建議走 NBA 官方認可的票務平台（TickPick、Ticketmaster、SeatGeek 等）。球場禁帶大背包，行李記得先放飯店。</li>\n<li>United Center 在市區西邊，賽後人多，先查好回程的公車、地鐵或叫車。</li>\n<li>3/2 克里夫蘭飛費城的直飛比轉機貴很多，轉機班次要花大半天，可依預算取捨；訂前把行李費加進去一起比較。</li>\n<li>球賽時間以 NBA 官方公佈為準，之後仍可能調整；預訂不可退的機票與住宿前請再確認一次賽程。</li>\n<li>回程 BR03 是 3/6 23:55 起飛，所以 3/5 要在華盛頓住一晚，3/6 退房後白天逛景點，傍晚前往機場。</li>\n<li>長榮華盛頓航線每週只飛四班，改票空間比較小。</li>\n</ul></div>\n\n",
-C:{chi:"芝加哥",cle:"克里夫蘭",phi:"費城",was:"華盛頓"},
+c:{title:"美東七六人追球之旅 芝加哥・費城版 2027.02.25–03.08",route:"<div class=\"node\" style=\"--c:var(--chi)\"><i></i><b>芝加哥</b><span>2/25–2/28</span></div>\n<div class=\"seg\"><em>飛機約 2h15</em></div>\n<div class=\"node\" style=\"--c:var(--phi)\"><i></i><b>費城</b><span>2/28–3/5</span></div>\n<div class=\"seg\"><em>Amtrak 約 2–3h</em></div>\n<div class=\"node\" style=\"--c:var(--was)\"><i></i><b>華盛頓</b><span>3/5–3/6</span></div>\n",stats:"<div><strong>3</strong>場 NBA 比賽</div><div><strong>3</strong>座城市</div><div><strong>9</strong>晚住宿</div>",thead:"三場比賽",tickets:"<div class=\"tk\"><div class=\"l\"><b>2/27</b><span>週六</span></div><div class=\"r\"><h3>籃網 @ 公牛</h3><p>7:00 PM CT｜United Center<br>芝加哥（公牛主場，美東時間 8:00 PM）</p><span class=\"tag\">公牛主場</span> <span class=\"price\">最低約 US$41 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-chicago-bulls-vs-brooklyn-nets-tickets-united-center-2-27-27-7pm/8205607/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/3</b><span>週三</span></div><div class=\"r\"><h3>黃蜂 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">主場</span> <span class=\"price\">最低約 US$55 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-charlotte-hornets-tickets-xfinity-mobile-arena-3-3-27-7pm/8205371/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n<div class=\"tk\"><div class=\"l\"><b>3/4</b><span>週四</span></div><div class=\"r\"><h3>湖人 @ 七六人</h3><p>7:00 PM ET｜Xfinity Mobile Arena<br>費城（主場）</p><span class=\"tag\">全國轉播 Prime Video</span> <span class=\"price\">最低約 US$147 起</span> <a class=\"buy\" href=\"https://www.tickpick.com/buy-philadelphia-76ers-vs-los-angeles-lakers-tickets-xfinity-mobile-arena-3-4-27-7pm/8205380/\" target=\"_blank\" rel=\"noopener\">TickPick 買票 ↗</a></div></div>\n",flights:"<div class=\"fl\"><h3>去程｜長榮 BR056</h3><p>2/25 TPE → ORD</p><small>20:00 桃園起飛 → 19:35 抵達芝加哥歐海爾（同日）<br>時間以電子機票為準</small></div>\n<div class=\"fl\"><h3>國內段｜芝加哥 → 費城（尚未訂）</h3><p>2/28 ORD → PHL</p><small>直飛約 2 小時 15 分，例：08:40 → 11:45；2/27 晚上有球賽，建議挑 08:40 之後的班次，時間為當地時間<br>價格會變動，訂前再查一次</small></div>\n<div class=\"fl\"><h3>回程｜長榮 BR03</h3><p>3/6 IAD → TPE</p><small>3/6（六）23:55 華盛頓杜勒斯起飛 → 3/8（一）06:05 抵達桃園第二航廈</small></div>\n",transport:"<h2>城市間交通（全程不租車）</h2>\n<div class=\"box\"><ul>\n<li><b>2/28 芝加哥 → 費城</b>：搭飛機，ORD → PHL 直飛約 2 小時 15 分，時差 +1 小時（費城比芝加哥快）。機場線（SEPTA）到 Center City 約 25–30 分鐘。</li>\n<li><b>3/5 費城 → 華盛頓</b>：搭 Amtrak，30th Street 站到 Union Station，Regional 約 2.5–3 小時、Acela 約 2 小時，票價約 US$30–80（依日期浮動）。</li>\n<li>全程不租車，避開冬季開車的風險。芝加哥、費城、華盛頓都用地鐵與叫車，不用停車費。</li>\n<li>2/28 到 3/3 第一場費城球賽之間有 3 天緩衝，萬一 2/28 的班機取消，還來得及改飛。</li>\n<li>2 月底東北部有暴風雪風險，航班與火車都可能延誤，出發前看天氣預報，行程保留彈性。</li>\n</ul></div>\n\n<h2>出發前確認</h2>\n<div class=\"box warn\"><ul>\n<li>ESTA 在出發前 72 小時以前辦好。</li>\n<li>三場球票自己買：建議走 NBA 官方認可的票務平台（TickPick、Ticketmaster、SeatGeek 等）。球場禁帶大背包，行李記得先放飯店。</li>\n<li>2/27 公牛主場開賽是芝加哥時間晚上 7:00（美東 8:00），United Center 在市區西邊，賽後人多，先查好回程的公車、地鐵或叫車。</li>\n<li>2/28 要搭早班機，2/27 看完球回飯店就先把行李收好，隔天直接出門。</li>\n<li>球賽時間以 NBA 官方公佈為準，之後仍可能調整；預訂不可退的機票與住宿前請再確認一次賽程。</li>\n<li>回程 BR03 是 3/6 23:55 起飛，所以 3/5 要在華盛頓住一晚，3/6 退房後白天逛景點，傍晚前往機場。</li>\n<li>長榮華盛頓航線每週只飛四班，改票空間比較小。</li>\n</ul></div>\n\n",
+C:{chi:"芝加哥",phi:"費城",was:"華盛頓"},
 D:[
 {n:1,d:"2/25",w:"四",c:"chi",t:"台北出發，抵達芝加哥",m:"TPE → ORD",s:"芝加哥市區（Loop 或 River North）",i:[
 ["晚","抵達歐海爾機場","入境後搭藍線地鐵進市區約 45 分鐘，或叫車。"],
@@ -420,27 +420,24 @@ D:[
 ["15:30","芝加哥文化中心與千禧公園","文化中心免費，天花板的蒂芙尼穹頂很漂亮。"],
 ["17:30","賽前晚餐","球場在市區西邊，建議在 West Loop 吃。"],
 ["18:15","前往 United Center","在市區西側，搭公車或叫車，賽後人多，先查回程路線。"],
-["19:00","NBA：籃網 @ 公牛 🏀","公牛主場，全美最知名的球場之一，麥可・喬丹雕像在外面。"]]},
-{n:4,d:"2/28",w:"日",c:"cle",t:"芝加哥 → 克里夫蘭（搭飛機）",m:"ORD → CLE 約 1h30",s:"克里夫蘭 Downtown",i:[
-["上午","退房，前往 ORD 機場","藍線約 45 分鐘，國內線至少提前 1.5–2 小時到。"],
-["例 10:52","ORD → CLE 飛行","直飛約 1 小時 30 分，克里夫蘭時間 13:18 抵達（芝加哥比克里夫蘭慢 1 小時）。"],
-["15:00","入住市區飯店","機場搭 RTA 紅線到市區約 25 分鐘。"],
-["15:30","克里夫蘭藝術博物館","免費，約 1.5 小時，先查當天閉館時間。週一休館，所以今天去。"],
-["17:30","Public Square 與 Terminal Tower","看看市區天際線，傍晚光線好。"],
-["19:00","晚餐與早睡","在 Playhouse Square 或 Ohio City 附近用餐。"]]},
-{n:5,d:"3/1",w:"一",c:"cle",g:1,t:"克里夫蘭｜七六人 @ 騎士",m:"步行／叫車",s:"克里夫蘭 Downtown",i:[
-["10:00","搖滾名人堂 Rock & Roll Hall of Fame","在伊利湖畔，約 2.5 小時。"],
-["13:30","午餐：Ohio City","Great Lakes Brewing 是在地經典。"],
-["15:00","回飯店休息","整理球衣與外套。"],
-["17:30","到球場周邊覓食","Rocket Arena 賽前店家會擠，建議步行或叫車。"],
-["18:15","進場","開賽前 45 分鐘抵達，過安檢。"],
-["19:00","NBA：七六人 @ 騎士 🏀","客場看七六人，穿藍紅色混在騎士球迷裡很有趣。"]]},
-{n:6,d:"3/2",w:"二",c:"phi",t:"克里夫蘭 → 費城（搭飛機）",m:"CLE → PHL 約 1h35",s:"費城 Center City",i:[
-["10:00","聖誕故事之家（可選）","電影《聖誕故事》拍攝地，在 Tremont，約 30 分鐘，先查營業時間。"],
-["12:00","午餐，退房","可試 West Side Market 周邊，市場營業日要先查。"],
-["例 14:48","CLE → PHL 飛行","直飛約 1 小時 34 分，16:22 抵達。機場線到市區約 25–30 分鐘。"],
-["18:00","入住費城 Center City","放好行李。"],
-["18:30","晚餐與市政廳夜景","Center City 一帶，LOVE 公園離市政廳很近。"]]},
+["19:00","NBA：籃網 @ 公牛 🏀","芝加哥時間晚上 7:00 開賽。公牛主場，全美最知名的球場之一，麥可・喬丹雕像在外面。賽後回飯店先收好行李，明天搭早班機。"]]},
+{n:4,d:"2/28",w:"日",c:"phi",t:"芝加哥 → 費城（搭飛機）",m:"ORD → PHL 約 2h15",s:"費城 Center City",i:[
+["06:00","退房，前往 ORD 機場","若搭 08:40 班機。藍線約 45 分鐘，國內線至少提前 1.5–2 小時到。"],
+["例 08:40","ORD → PHL 飛行","直飛約 2 小時 15 分，費城時間 11:45 抵達（芝加哥比費城慢 1 小時）。"],
+["13:30","入住費城 Center City，午餐","機場線到市區約 25–30 分鐘；午餐可去雷丁車站市場，老字號室內市場。"],
+["15:30","Rittenhouse Square 散步","Center City 的小公園，天氣冷就改在室內逛。"],
+["18:00","晚餐","市政廳附近。早起又趕路，今晚早點休息。"]]},
+{n:5,d:"3/1",w:"一",c:"phi",t:"費城自由日",m:"步行＋地鐵 BSL",s:"費城 Center City",i:[
+["09:30","獨立廳與自由鐘","冬季獨立廳要事先訂時段票，自由鐘免票。"],
+["12:30","雷丁車站市場 Reading Terminal Market","老字號室內市場，午餐在這裡吃。"],
+["14:30","Elfreth's Alley","全美最古老的住宅街，十分鐘就能逛完。"],
+["16:00","City Hall 與 LOVE 公園","市政廳是全美最大的市政建築之一。"],
+["18:00","晚餐","Center City 一帶。"]]},
+{n:6,d:"3/2",w:"二",c:"phi",t:"費城自由日（緩衝日）",m:"步行＋地鐵 BSL",s:"費城 Center City",i:[
+["10:00","美國革命博物館 Museum of the American Revolution","在獨立廳附近，約 2 小時，先查營業時間。"],
+["13:00","午餐與自由活動","Old City 或 South Street 一帶選擇多。"],
+["16:00","休息，整理球衣","明天晚上有球賽。"],
+["18:00","晚餐","這天也是航班延誤的緩衝，行程不要排太滿。"]]},
 {n:7,d:"3/3",w:"三",c:"phi",g:1,t:"費城｜黃蜂 @ 七六人",m:"步行＋地鐵 BSL",s:"費城 Center City",i:[
 ["10:00","費城藝術博物館・洛基階梯","重現跑上階梯拍照。"],
 ["13:00","午餐與自由活動","Center City 逛街，或再回雷丁車站市場吃一輪。"],
@@ -467,12 +464,11 @@ D:[
 ["23:55","長榮 BR03 起飛","直飛約 15 小時，在機上補眠。"],
 ["3/8 06:05","抵達桃園","第二航廈，回家。"]]}
 ],
-stay:[["chi","芝加哥","2/25–2/28｜3 晚","選 Loop 或 River North，靠近藍線與紅線地鐵，全程不用租車。"],["cle","克里夫蘭","2/28–3/2｜2 晚","住 Downtown，離 Rocket Arena 步行可達。"],["phi","費城","3/2–3/5｜3 晚","住 Center City，搭 Broad Street Line 去球場最方便。"],["was","華盛頓","3/5–3/6｜1 晚","住 Downtown 或靠近 Metro 站，3/6 退房後行李寄放飯店，晚上再去 IAD。"]],
-wx:[["chi","芝加哥","約 -6 ~ 2°C，風大且濕冷。"],["cle","克里夫蘭","約 -4 ~ 3°C，湖邊常下雪。"],["phi","費城","約 -2 ~ 8°C，早晚偏冷。"],["was","華盛頓","約 0 ~ 10°C，白天較溫和。"]],
-EV:{"2/25":[["f","✈ BR056 20:00"]],"2/27":[["g","🏀 公牛"]],"2/28":[["f","✈ ORD→CLE"]],"3/1":[["g","🏀 騎士"]],"3/2":[["f","✈ CLE→PHL"]],"3/3":[["g","🏀 黃蜂"]],"3/4":[["g","🏀 湖人"]],"3/6":[["f","✈ BR003 23:55"]],"3/7":[["f","✈ 飛行中"]],"3/8":[["f","✈ 06:05 抵達台北"]]},
-legs:[{mode:"fly",from:"chi",to:"cle",bend:-0.1},{mode:"fly",from:"cle",to:"phi",bend:-0.1},{mode:"train",from:"phi",to:"was"}],cities:[{k:"chi",label:"芝加哥",sub:"2/25–2/28",color:"#2f80c9"},{k:"cle",label:"克里夫蘭",sub:"2/28–3/2",color:"#7a2840",dy:-18},{k:"phi",label:"費城",sub:"3/2–3/5",color:"#0b2a5b",dx:9,anchor:"start",dy:-8},{k:"was",label:"華盛頓",sub:"3/5–3/6",color:"#2f7d5b",dx:-9,anchor:"end",dy:3}],info:[{icon:"✈",title:"台北 → 芝加哥",time:"約 13.5 小時",sub:"2/25 長榮 BR056，跨太平洋，過了換日線所以同一天晚上就到。",color:"#0b2a5b"},
-{icon:"✈",title:"芝加哥 → 克里夫蘭",time:"約 1 小時 30 分",sub:"2/28 直飛，約 500 公里，克里夫蘭在伊利湖南岸。",color:"#d62839"},
-{icon:"✈",title:"克里夫蘭 → 費城",time:"約 1 小時 35 分",sub:"3/2 直飛，約 600 公里。",color:"#d62839"},
+stay:[["chi","芝加哥","2/25–2/28｜3 晚","選 Loop 或 River North，靠近藍線與紅線地鐵，全程不用租車。"],["phi","費城","2/28–3/5｜5 晚","住 Center City，搭 Broad Street Line 去球場最方便。"],["was","華盛頓","3/5–3/6｜1 晚","住 Downtown 或靠近 Metro 站，3/6 退房後行李寄放飯店，晚上再去 IAD。"]],
+wx:[["chi","芝加哥","約 -6 ~ 2°C，風大且濕冷。"],["phi","費城","約 -2 ~ 8°C，早晚偏冷。"],["was","華盛頓","約 0 ~ 10°C，白天較溫和。"]],
+EV:{"2/25":[["f","✈ BR056 20:00"]],"2/27":[["g","🏀 公牛"]],"2/28":[["f","✈ ORD→PHL"]],"3/3":[["g","🏀 黃蜂"]],"3/4":[["g","🏀 湖人"]],"3/6":[["f","✈ BR003 23:55"]],"3/7":[["f","✈ 飛行中"]],"3/8":[["f","✈ 06:05 抵達台北"]]},
+legs:[{mode:"fly",from:"chi",to:"phi",bend:-0.1},{mode:"train",from:"phi",to:"was"}],cities:[{k:"chi",label:"芝加哥",sub:"2/25–2/28",color:"#2f80c9"},{k:"phi",label:"費城",sub:"2/28–3/5",color:"#0b2a5b",dx:9,anchor:"start",dy:-8},{k:"was",label:"華盛頓",sub:"3/5–3/6",color:"#2f7d5b",dx:-9,anchor:"end",dy:3}],info:[{icon:"✈",title:"台北 → 芝加哥",time:"約 13.5 小時",sub:"2/25 長榮 BR056，跨太平洋，過了換日線所以同一天晚上就到。",color:"#0b2a5b"},
+{icon:"✈",title:"芝加哥 → 費城",time:"約 2 小時 15 分",sub:"2/28 直飛，約 1,090 公里，比台北飛首爾還短，費城在東岸大西洋邊。",color:"#d62839"},
 {icon:"🚆",title:"費城 → 華盛頓",time:"約 2–3 小時",sub:"3/5 Amtrak，約 225 公里。",color:"#2f7d5b"},
 {icon:"✈",title:"華盛頓 → 台北",time:"直飛",sub:"3/6 長榮 BR003，23:55 起飛，3/8 06:05 抵達桃園。",color:"#0b2a5b"}]},
 };
@@ -500,7 +496,7 @@ function applyStatic(){
  document.querySelectorAll("#langsw [data-lang]").forEach(b=>b.classList.toggle("on",b.dataset.lang===LANG));
 }
 const META={
- c:{t:"芝加哥・克里夫蘭版",d:"待在芝加哥看公牛，2/28 飛克里夫蘭住兩晚，3/1 看七六人客場，3/2 飛費城，不去紐約、不開車。看 4 場球（公牛 1 場、騎士 1 場、費城 2 場）。"}
+ c:{t:"芝加哥・費城版",d:"芝加哥看公牛，2/28 飛費城，不去紐約、不開車。看 3 場球（公牛 1 場、費城 2 場）。"}
 };
 const TABS=[["ov",'<svg viewBox="0 0 24 24"><path d="M4 6.5h16v3.2a2.3 2.3 0 0 0 0 4.6v3.2H4v-3.2a2.3 2.3 0 0 0 0-4.6z"/><path d="M14 6.5v11" stroke-dasharray="2 2"/></svg>',"總覽"],["map",'<svg viewBox="0 0 24 24"><path d="M9 4 3 6v14l6-2 6 2 6-2V4l-6 2z"/><path d="M9 4v14M15 6v14"/></svg>',"地圖"],["cal",'<svg viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></svg>',"月曆"],["days",'<svg viewBox="0 0 24 24"><path d="M9 6.5h11M9 12h11M9 17.5h11"/><circle cx="4.5" cy="6.5" r=".6"/><circle cx="4.5" cy="12" r=".6"/><circle cx="4.5" cy="17.5" r=".6"/></svg>',"行程"],["stay",'<svg viewBox="0 0 24 24"><path d="M3.5 11 12 4l8.5 7"/><path d="M5.5 9.5V20h13V9.5"/><path d="M10 20v-5.5h4V20"/></svg>',"住宿交通"],["notes",'<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><circle cx="12" cy="7.8" r=".6"/></svg>',"須知"]];
 const $=id=>document.getElementById(id);
