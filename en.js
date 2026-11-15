@@ -1,5 +1,18 @@
 /* English translations. Keys are the exact Chinese strings used on the page. */
 window.EN={
+"花費紀錄": "Trip costs",
+"花費": "Costs",
+"交通": "Transport",
+"長榮來回｜台北 ⇄ 美國": "EVA Air round trip | Taipei ⇄ US",
+"國內段｜芝加哥 → 費城": "Domestic | Chicago → Philadelphia",
+"美國航空 AA 2974，2/28": "American Airlines AA 2974, 2/28",
+"費城 → 華盛頓｜Amtrak": "Philadelphia → Washington | Amtrak",
+"185 次，3/5，Flex 票（3 人共 US$87，平分）": "No. 185, 3/5, Flex fare (US$87 for 3 travelers, split evenly)",
+"各自付款": "Paid separately",
+"待收款": "To collect",
+"已收款": "Collected",
+"每人合計": "Total per person",
+"金額為每人；台幣與美金未換算。": "Amounts are per person; NT$ and US$ are not converted.",
 "芝加哥": "Chicago",
 "紐約": "New York",
 "費城": "Philadelphia",
