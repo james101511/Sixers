@@ -12,7 +12,12 @@ window.EN={
 "待收款": "To collect",
 "已收款": "Collected",
 "每人合計": "Total per person",
-"金額為每人，台幣為實際刷卡金額，含國外交易手續費。": "Amounts are per person, in NT$ as actually charged to the card, including the foreign transaction fee.",
+"金額為每人，台幣為實際刷卡金額，含國外交易手續費；美金項目扣款後再換算成台幣。": "Amounts are per person. NT$ amounts are what was actually charged to the card, including the foreign transaction fee; US$ items will be converted to NT$ once charged.",
+"住宿": "Lodging",
+"芝加哥住宿｜Airbnb 兩房（3 晚）": "Chicago lodging | Airbnb 2-bedroom (3 nights)",
+"2/25–2/28，含稅 US$536.78，3 人平分；2/11 前可免費取消": "2/25–2/28, US$536.78 incl. taxes, split by 3; free cancellation until 2/11",
+"2/3 扣款": "Charged 2/3",
+
 "芝加哥": "Chicago",
 "紐約": "New York",
 "費城": "Philadelphia",
